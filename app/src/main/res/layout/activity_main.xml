@@ -8,36 +8,45 @@
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="156dp"
         android:layout_height="122dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/drawablelogo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/drawablelogo"/>
 
-    <LinearLayout
-
-        android:id="@+id/linearLayout"
-        android:layout_width="396dp"
-        android:layout_height="539dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="32dp"
+    <ImageView
+        android:id="@+id/logo1"
+        android:layout_width="206dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="278dp">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/design" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical"
+        android:padding="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Connexion ou inscription"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -55,28 +64,28 @@
         <EditText
             android:id="@+id/usernameEditText"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/background_edittext"
             android:hint="example@email.com"
             android:inputType="textEmailAddress"
-            android:paddingLeft="8dp" />
+            android:padding="8dp" />
 
         <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/background_edittext"
             android:hint="Mot de passe"
             android:inputType="textPassword"
-            android:paddingLeft="8dp" />
+            android:padding="8dp" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/orange"
             android:text="Se connecter" />
 
@@ -84,7 +93,7 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginVertical="30dp"
+            android:layout_marginTop="24dp"
             android:background="?android:attr/listDivider" />
 
         <TextView
@@ -92,14 +101,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
             android:text="ou"
-            android:textColor="@color/gray"
-            android:textSize="13sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            android:textSize="15sp"
+            android:textStyle="normal" />
 
         <Button
             android:id="@+id/signupButton"
