@@ -2,60 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="393dp"
+    android:layout_height="808dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_width="314dp"
-        android:layout_height="49dp"
-        android:layout_margin="17dp"
-        android:backgroundTint="@color/gris"
-        android:text="Creer un compte"
-        android:textColor="@color/black"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="724dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="360dp"
-        android:layout_height="45dp"
-        android:text="Entrez votre mail pour vous connecter"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="284dp" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="318dp"
-        android:layout_height="192dp"
-        android:layout_marginBottom="616dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/drawableLogo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="42dp" />
+        android:layout_width="156dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/drawablelogo" />
 
     <LinearLayout
-        android:layout_width="394dp"
-        android:layout_height="238dp"
-        android:layout_marginStart="16dp"
+
+        android:id="@+id/linearLayout"
+        android:layout_width="396dp"
+        android:layout_height="539dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintVertical_bias="0.253">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="278dp">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connexion ou inscription"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="Entrez votre mail pour se connecter"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
         <EditText
             android:id="@+id/usernameEditText"
-            android:layout_width="302dp"
-            android:layout_height="51dp"
-            android:layout_margin="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/background_edittext"
             android:hint="example@email.com"
             android:inputType="textEmailAddress"
@@ -63,63 +64,52 @@
 
         <EditText
             android:id="@+id/passwordEditText"
-            android:layout_width="302dp"
-            android:layout_height="52dp"
-            android:layout_margin="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/background_edittext"
             android:hint="Mot de passe"
             android:inputType="textPassword"
             android:paddingLeft="8dp" />
 
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/orange"
+            android:text="Se connecter" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginVertical="30dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="ou"
+            android:textColor="@color/gray"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/gris"
+            android:text="Créer un compte"
+            android:textColor="@color/black" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="318dp"
-        android:layout_height="42dp"
-        android:text="Connexion ou inscription"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="242dp" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="304dp"
-        android:layout_height="49dp"
-        android:layout_margin="17dp"
-        android:backgroundTint="@color/orange"
-        android:text="Se connecter"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="584dp" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="310dp"
-        android:layout_height="5dp"
-        android:layout_marginVertical="20dp"
-        android:background="?android:attr/listDivider"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="685dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ou"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="677dp"
-        android:textColor="@color/gray"
-        android:paddingHorizontal="9dp"
-        android:background="@color/white"/>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
