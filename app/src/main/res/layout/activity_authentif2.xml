@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="393dp"
+    android:layout_height="808dp"
     android:orientation="vertical"
     tools:context=".AuthentifActivity2">
 
@@ -15,8 +15,110 @@
         app:srcCompat="@drawable/drawablelogo"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="32dp" />
+        tools:layout_editor_absoluteY="70dp" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="390dp"
+        android:layout_height="496dp"
+        android:orientation="vertical"
+        android:padding="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="337dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-20dp"
+            android:orientation="horizontal">
+
+
+            <EditText
+
+                android:id="@+id/editTextText"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:text=" Nom"
+                android:textColor="@color/gray"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="17dp"
+                tools:layout_editor_absoluteY="367dp" />
+
+            <EditText
+                android:id="@+id/editTextText2"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_edittext"
+                android:ems="10"
+                android:inputType="text"
+                android:text=" Prénom"
+                android:textColor="@color/gray"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="213dp"
+                tools:layout_editor_absoluteY="367dp" />
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/background_edittext"
+            android:hint="example@email.com"
+            android:inputType="textEmailAddress"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_edittext"
+            android:hint="Mot de passe"
+            android:inputType="textPassword"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/confirmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_edittext"
+            android:hint="confirmer votre mot de passe"
+            android:inputType="textPassword"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/orange"
+            android:text="Se connecter" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="By clicking continue, you agree to our Terms of Service and Privacy Policy"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-110dp"
+            tools:layout_editor_absoluteY="796dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -28,106 +130,18 @@
         android:textSize="20sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-6dp"
-        tools:layout_editor_absoluteY="243dp" />
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="232dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="425dp"
-        android:layout_height="45dp"
+        android:layout_width="410dp"
+        android:layout_height="41dp"
         android:text="Entrez vos informations personnelles"
         android:textAlignment="center"
         android:textSize="20sp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="270dp" />
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="266dp" />
 
-    <EditText
-
-        android:id="@+id/editTextText"
-        android:layout_width="173dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_edittext"
-        android:ems="10"
-        android:inputType="text"
-        android:text="  Nom"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="367dp" />
-
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_edittext"
-        android:ems="10"
-        android:inputType="text"
-        android:text="  Prénom"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="367dp" />
-
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="405dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_edittext"
-        android:inputType="text"
-        android:text="   email@email.com"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="446dp" />
-
-    <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="405dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="4"
-        android:background="@drawable/background_edittext"
-        android:inputType="text"
-        android:text="   Entrez votre mot de passe"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="529dp" />
-
-    <EditText
-        android:id="@+id/editTextText5"
-        android:layout_width="405dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_edittext"
-        android:inputType="text"
-        android:text="   Confirmez votre mot de passe"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="612dp" />
-
-    <Button
-        android:id="@+id/inscriptionButton"
-        android:layout_width="405dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/orange"
-        android:text="S'inscrire"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="724dp"
-       />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="By clicking continue, you agree to our Terms of Service and Privacy Policy"
-        android:textAlignment="center"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-110dp"
-        tools:layout_editor_absoluteY="796dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
