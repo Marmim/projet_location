@@ -6,70 +6,84 @@
     android:layout_width="393dp"
     android:layout_height="808dp"
     android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
     tools:context=".AuthentifActivity2">
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:srcCompat="@drawable/drawablelogo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="70dp" />
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/drawablelogo" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="390dp"
-        android:layout_height="496dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="337dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintVertical_bias="0.221">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inscrivez-vous"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="355dp"
+            android:layout_height="40dp"
+            android:text="Entrez vos informations"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-20dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-
             <EditText
-
                 android:id="@+id/editTextText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_edittext"
                 android:ems="10"
-                android:inputType="text"
-                android:text=" Nom"
+                android:inputType="textPersonName"
+                android:hint=" Nom"
                 android:textColor="@color/gray"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="17dp"
-                tools:layout_editor_absoluteY="367dp" />
+                tools:ignore="MissingConstraints" />
 
             <EditText
                 android:id="@+id/editTextText2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_edittext"
                 android:ems="10"
-                android:inputType="text"
-                android:text=" Prénom"
+                android:inputType="textPersonName"
+                android:hint=" Prénom"
                 android:textColor="@color/gray"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="213dp"
-                tools:layout_editor_absoluteY="367dp" />
+                tools:ignore="MissingConstraints" />
         </LinearLayout>
-
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -118,30 +132,6 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="-110dp"
             tools:layout_editor_absoluteY="796dp" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inscrivez-vous"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="232dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="410dp"
-        android:layout_height="41dp"
-        android:text="Entrez vos informations personnelles"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="266dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

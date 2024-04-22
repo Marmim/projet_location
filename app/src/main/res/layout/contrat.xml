@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360dp"
+    android:layout_height="800dp"
+    android:orientation="vertical"
+    tools:context=".tableau_bord">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Contrat a telecharger"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"/>
+
+    <ImageView
+        android:id="@+id/contrat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/contrat" />
+    <Button
+        android:id="@+id/suivantButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="100dp"
+        android:backgroundTint="@color/orange"
+        android:text="Suivant"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
