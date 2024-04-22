@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".QuiEtes">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/drawablelogo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="70dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Location en ligne "
+        android:textColor="@color/orange"
+        android:textSize="25dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Bienvenue sur LeaseEase"
+        android:textColor="@color/orange"
+        android:textSize="25dp"
+        android:textAlignment="center" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Veuillez choisir votre identité afin que nous puissions vous proposer ou annoncer des biens qui vous correspondent."
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textAlignment="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/Loca"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/orange"
+            android:text="Je suis locataire"
+            android:layout_marginRight="20dp"/>
+        <Button
+            android:id="@+id/Propr"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/orange"
+            android:layout_marginLeft="20dp"
+            android:text="Je suis propriétaire" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

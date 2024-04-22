@@ -13,6 +13,24 @@
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
         <activity
+            android:name=".Maison"
+            android:exported="false" />
+        <activity
+            android:name=".QuiEtes"
+            android:exported="false" />
+        <activity
+            android:name=".Contrat"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilProprietaire"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilLocataire"
+            android:exported="false" />
+        <activity
+            android:name=".Profil_locataire"
+            android:exported="false" />
+        <activity
             android:name=".AuthentifActivity2"
             android:exported="false" />
         <activity
