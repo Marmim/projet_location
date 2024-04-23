@@ -8,18 +8,29 @@
     android:orientation="vertical"
     tools:context=".liste_propriete">
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemIconTint="@color/black"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_menu"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="619dp" />
 
-        <EditText
+
+<EditText
             android:id="@+id/contacte"
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:background="@drawable/label"
             android:hint="search"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:inputType="textFilter"
             android:padding="8dp"
             android:layout_marginLeft="10dp"
             android:drawableRight="@drawable/search"/>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -28,12 +39,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:srcCompat="@drawable/m1" />
 
                 <TextView
@@ -87,6 +97,7 @@
                     android:layout_marginLeft="133dp"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
+
                 <ImageView
                     android:id="@+id/imageView5"
                     android:layout_width="261dp"
@@ -118,6 +129,7 @@
 
         </LinearLayout>
         </ScrollView>
+
 </LinearLayout>
 
 

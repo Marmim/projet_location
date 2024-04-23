@@ -13,18 +13,13 @@
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Maison"
             android:exported="false" />
         <activity
-<<<<<<< Updated upstream
-            android:name=".tableau_bord"
-=======
-            android:name=".liste_propriete"
->>>>>>> Stashed changes
+            android:name=".contrat_pdf"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
