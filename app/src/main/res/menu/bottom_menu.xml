@@ -23,7 +23,7 @@
         tools:ignore="MenuTitle"
         android:title="Notifications"/>
 
-    <item android:id="@+id/profil"
+    <item android:id="@+id/profilmenu"
         android:icon="@drawable/femalepro"
         tools:ignore="MenuTitle"
         android:title="Profil"/>

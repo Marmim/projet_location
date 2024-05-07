@@ -50,18 +50,18 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/editNom"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_edittext"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint=" Nom"
+                android:hint="Nom"
                 android:textColor="@color/gray" />
 
             <EditText
-                android:id="@+id/edittext"
+                android:id="@+id/editPrenom"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/usernameEditText"
+            android:id="@+id/emailtext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="30dp"
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/orange"
-            android:text="Se connecter" />
+            android:text="S'inscrire" />
 
         <TextView
             android:layout_width="match_parent"
