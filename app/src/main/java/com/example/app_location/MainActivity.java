@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("MainActivity", "Bouton de création de compte cliqué");
                 Intent intent = new Intent(MainActivity.this, AuthentifActivity2.class);
                 startActivity(intent);
             }
@@ -59,15 +58,16 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    Toast.makeText(MainActivity.this, "success.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(),QuiEtes.class);
+                                    startActivity(intent);
+                                    finish();
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     Toast.makeText(MainActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });

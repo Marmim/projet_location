@@ -63,31 +63,12 @@ public class AuthentifActivity2 extends AppCompatActivity {
                 } else if (!password.equals(confirmPassword)) {
                     Toast.makeText(AuthentifActivity2.this, "Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Enregistrer l'utilisateur dans Firestore
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("email", email);
-                    user.put("password", password);
-                    user.put("nom", nom);
-                    user.put("prenom", prenom);
 
-                    db.collection("utilisateurs")
-                            .add(user)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(AuthentifActivity2.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(AuthentifActivity2.this, QuiEtes.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(AuthentifActivity2.this, "Erreur lors de l'inscription, veuillez réessayer", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                    Intent intent = new Intent(AuthentifActivity2.this, QuiEtes.class);
+                    startActivity(intent);
                 }
             }
         });
+
     }
 }
