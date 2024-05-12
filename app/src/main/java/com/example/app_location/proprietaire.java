@@ -26,7 +26,7 @@ public class proprietaire extends AppCompatActivity {
         suivantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(proprietaire.this, Maison.class);
+                Intent intent = new Intent(proprietaire.this, liste_propriete.class);
                 startActivity(intent);
             }
         });
