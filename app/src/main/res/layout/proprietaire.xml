@@ -3,31 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".proprietaire">
+    tools:context=".proprietaire"
+    android:layout_marginTop="70dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"
+        android:layout_marginRight="80dp"
         android:text="Que souhaitez-vous louer?"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        >
 
         <ImageView
             android:id="@+id/imageViewMain"
             android:layout_width="0dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:src="@drawable/img" />
 
@@ -36,7 +37,6 @@
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:layout_marginLeft="55dp"
             android:src="@drawable/img_1" />
 
     </LinearLayout>
@@ -63,7 +63,9 @@
             android:background="@drawable/btn_design"
             android:text="Appartement" />
     </LinearLayout>
-
+ <Space
+     android:layout_width="20dp"
+     android:layout_height="20dp"></Space>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,7 +79,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="150dp"
+                android:layout_width="212dp"
                 android:layout_height="90dp"
                 android:orientation="vertical">
 
@@ -85,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Votre Tarif"
-                    android:textSize="19sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -109,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Votre contact"
-                    android:textSize="19sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <EditText
@@ -128,7 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ecrire une déscription"
-            android:textSize="19sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <EditText
@@ -145,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ajouter des photos"
-            android:textSize="19sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <EditText
@@ -163,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="choisissez la localisation de votre propriété"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -181,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Pays:"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -203,7 +205,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:text="Ville:"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -216,13 +218,13 @@
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="-30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="Quartier:"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <Spinner
@@ -237,7 +239,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="-10dp">
 
             <Button
                 android:id="@+id/RetourButton"
@@ -269,7 +271,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="619dp"
         app:itemIconTint="@color/black"
-        app:labelVisibilityMode="labeled"/>
+        app:labelVisibilityMode="unlabeled"/>
 
 </LinearLayout>
 

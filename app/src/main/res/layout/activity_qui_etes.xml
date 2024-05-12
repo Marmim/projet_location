@@ -61,13 +61,13 @@
         android:layout_marginTop="60dp">
         <Button
             android:id="@+id/buttonLoca"
-            android:layout_width="180dp"
+            android:layout_width="230dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/orange"
             android:text="Je suis locataire" />
         <Button
             android:id="@+id/buttonPropr"
-            android:layout_width="180dp"
+            android:layout_width="230dp"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/orange"

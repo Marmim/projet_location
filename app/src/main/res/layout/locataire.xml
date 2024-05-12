@@ -11,36 +11,37 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginBottom="20dp"
+    android:layout_marginTop="70dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="40dp"
         android:text="Que cherchez-vous louer?"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginRight="50dp"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/imageViewMain"
-            android:layout_width="0dp"
+            android:layout_width="23dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:src="@drawable/img" />
 
         <ImageView
             android:id="@+id/imageViewSecondary"
-            android:layout_width="0dp"
+            android:layout_width="40dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="55dp"
             android:layout_weight="1"
             android:src="@drawable/img_1" />
 
@@ -69,65 +70,69 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="348dp"
-        android:layout_height="546dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="Choisissez la localisation où vous souhaitez louer votre logement?"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Pays:"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    />
 
                 <Spinner
                     android:id="@+id/pays_spinner"
-                    android:layout_width="130dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="12dp"/>
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="40dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="-30dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:text="Ville:"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                   />
 
                 <Spinner
                     android:id="@+id/Ville_spinner"
-                    android:layout_width="130dp"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
@@ -135,21 +140,22 @@
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Quartier:"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                 />
 
             <Spinner
                 android:id="@+id/Quartier_spinner"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_weight="1" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"/>
 
         </LinearLayout>
 
@@ -158,23 +164,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Veuillez choisir le prix de location de votre logement?"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="1dp"
                 android:layout_marginLeft="7dp"
                 android:text="Prix:"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                />
 
             <Spinner
                 android:id="@+id/prix_spinner"
@@ -185,9 +191,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp">
 
             <Button
                 android:id="@+id/RetourButton"
