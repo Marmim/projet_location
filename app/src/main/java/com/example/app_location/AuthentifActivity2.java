@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -63,17 +64,12 @@ public class AuthentifActivity2 extends AppCompatActivity {
                                 user.put("nom", nom);
                                 user.put("prenom", prenom);
 
-                                db.collection("utilisateurs").add(user)
-                                        .addOnSuccessListener(documentReference -> {
-                                            Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                            // Rediriger vers l'activité suivante
-                                            Intent intent = new Intent(AuthentifActivity2.this, QuiEtes.class);
-                                            startActivity(intent);
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            Log.w(TAG, "Error adding document", e);
-                                            Toast.makeText(AuthentifActivity2.this, "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
-                                        });
+                                DocumentReference docRef = db.collection("utilisateurs").document(email);
+                                docRef.set(user);
+                                Intent intent = new Intent(getApplicationContext(),QuiEtes.class);
+                                startActivity(intent);
+                                finish();
+
                             })
                             .addOnFailureListener(e -> {
                                 // Une erreur s'est produite lors de la création de l'utilisateur

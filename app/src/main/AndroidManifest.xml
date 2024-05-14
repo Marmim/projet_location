@@ -22,7 +22,7 @@
             android:name=".QuiEtes"
             android:exported="false" />
         <activity
-            android:name=".locataire"
+            android:name=".AuthentifActivity2"
             android:exported="false" />
 
         <activity
@@ -35,7 +35,7 @@
             android:name=".ProfilProprietaire"
             android:exported="false" />
         <activity
-            android:name=".AuthentifActivity2"
+            android:name=".locataire"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
