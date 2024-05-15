@@ -262,16 +262,18 @@
 
 
     </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bot_nav"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
+        app:itemIconTint="@color/black"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="619dp"
-        app:itemIconTint="@color/black"
-        app:labelVisibilityMode="unlabeled"/>
+        tools:layout_editor_absoluteY="619dp" />
 
 </LinearLayout>
 

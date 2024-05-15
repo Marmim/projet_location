@@ -13,7 +13,7 @@
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Contrat"
             android:exported="false" />
         <activity
             android:name=".Maison"
@@ -22,20 +22,21 @@
             android:name=".QuiEtes"
             android:exported="false" />
         <activity
-            android:name=".AuthentifActivity2"
+            android:name=".liste_propriete"
             android:exported="false" />
 
         <activity
             android:name=".proprietaire"
             android:exported="false" />
-        <activity
-            android:name=".liste_propriete"
-            android:exported="false" />
+
         <activity
             android:name=".ProfilProprietaire"
             android:exported="false" />
         <activity
-            android:name=".locataire"
+            android:name=".ProfilLocataire"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

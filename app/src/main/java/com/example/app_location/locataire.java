@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -31,6 +32,7 @@ public class locataire  extends AppCompatActivity {
         RetourButton=findViewById(R.id.RetourButton);
         Ville_spinner=findViewById(R.id.Ville_spinner);
         Quartier_spinner=findViewById(R.id.Quartier_spinner);
+        BottomNavigationView bottomNavigationView;
         suivantButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -68,6 +70,38 @@ public class locataire  extends AppCompatActivity {
                         }
                     }
                 });
+
+        bottomNavigationView = findViewById(R.id.bot_nav);
+
+        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                startActivity(hometIntent);
+                return true;
+            } else if (itemId == R.id.search) {
+                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                startActivity(hometIntent);
+                return true;
+            /*} else  if (itemId == R.id.favoris) {
+                Intent hometIntent = new Intent(getApplicationContext(), Accueil.class);
+                startActivity(hometIntent);
+                return true;*/
+            }
+            else if (itemId == R.id.notif) {
+                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            else if (itemId == R.id.profilmenu) {
+                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            return false;
+        });
 
     }
     }
