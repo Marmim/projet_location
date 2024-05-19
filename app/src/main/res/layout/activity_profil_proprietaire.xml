@@ -127,6 +127,7 @@
         android:layout_marginBottom="20dp"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bot_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
