@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,8 @@ import java.util.ArrayList;
 
 public class locataire  extends AppCompatActivity {
     private Button suivantButton,RetourButton;
-    private Spinner Ville_spinner,Quartier_spinner;
+    private Spinner Ville_spinner,Quartier_spinner,Type;
+    private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,10 @@ public class locataire  extends AppCompatActivity {
         RetourButton=findViewById(R.id.RetourButton);
         Ville_spinner=findViewById(R.id.Ville_spinner);
         Quartier_spinner=findViewById(R.id.Quartier_spinner);
+        backButton = findViewById(R.id.backButton);
+        Type=findViewById(R.id.Type);
+
+
         suivantButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -43,6 +49,13 @@ public class locataire  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(locataire.this, QuiEtes.class);
+                startActivity(intent);
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(locataire.this, liste_propriete.class);
                 startActivity(intent);
             }
         });
@@ -63,6 +76,28 @@ public class locataire  extends AppCompatActivity {
                             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, villes.toArray(new String[villes.size()]));
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             Ville_spinner.setAdapter(dataAdapter);
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        CollectionReference typeRef = db.collection("Type_logement");
+        ArrayList<String> type = new ArrayList<String>();
+
+        typeRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                type.add(document.getId());
+                            }
+                            // Create adapter and set it to the spinner here
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, type.toArray(new String[type.size()]));
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            Type.setAdapter(dataAdapter);
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }

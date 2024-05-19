@@ -39,7 +39,7 @@ public class proprietaire extends AppCompatActivity {
     private Button LancerButton, AnnulerButton;
     private ImageButton backButton ,imageViewSecondary,imageViewMain;
     private final int MENU_PROFIL = R.id.profilmenu;
-    private Spinner Ville_spinner,Type;
+    private Spinner Ville_spinner,Type,prix_spinner;
 
 
     @SuppressLint("MissingInflatedId")
@@ -57,6 +57,7 @@ public class proprietaire extends AppCompatActivity {
         tarif = findViewById(R.id.tarif);
 
         Type=findViewById(R.id.Type);
+        prix_spinner=findViewById(R.id.prix_spinner);
 
 
         Ville_spinner = findViewById(R.id.Ville_spinner);
@@ -83,7 +84,9 @@ public class proprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //get villes
         CollectionReference citiesRef = db.collection("Ville");
         ArrayList<String> villes = new ArrayList<String>();
 
@@ -105,6 +108,7 @@ public class proprietaire extends AppCompatActivity {
                         }
                     }
                 });
+        //get type
 
         CollectionReference typeRef = db.collection("Type_logement");
         ArrayList<String> type = new ArrayList<String>();
@@ -122,6 +126,29 @@ public class proprietaire extends AppCompatActivity {
                             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(proprietaire.this, android.R.layout.simple_spinner_item, type.toArray(new String[type.size()]));
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             Type.setAdapter(dataAdapter);
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        //get prix
+        CollectionReference PrixRef = db.collection("Prix");
+        ArrayList<String> prix = new ArrayList<String>();
+
+        PrixRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                prix.add(document.getId());
+                            }
+                            // Create adapter and set it to the spinner here
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(proprietaire.this, android.R.layout.simple_spinner_item, prix.toArray(new String[prix.size()]));
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            prix_spinner.setAdapter(dataAdapter);
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }
@@ -155,7 +182,7 @@ public class proprietaire extends AppCompatActivity {
             db.collection("users")
                     .add(userData)
                     .addOnSuccessListener(documentReference -> {
-                        Toast.makeText(proprietaire.this, "Les données ont été Lancées.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(proprietaire.this, "Votre propriété est publiée", Toast.LENGTH_SHORT).show();
                         // Rediriger vers la page suivante après l'enregistrement des données
                         Intent intent = new Intent(proprietaire.this, liste_propriete.class);
                         startActivity(intent);

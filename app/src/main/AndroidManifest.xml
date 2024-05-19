@@ -21,6 +21,12 @@
             android:name=".tableau_bord"
             android:exported="false" />
         <activity
+            android:name=".proprietaire"
+            android:exported="false" />
+        <activity
+            android:name=".locataire"
+            android:exported="false" />
+        <activity
             android:name=".Contrat"
             android:exported="false" />
         <activity
@@ -32,9 +38,8 @@
         <activity
             android:name=".liste_propriete"
             android:exported="false" />
-
         <activity
-            android:name=".proprietaire"
+            android:name=".AuthentifActivity2"
             android:exported="false" />
 
         <activity
