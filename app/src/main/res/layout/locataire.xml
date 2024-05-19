@@ -5,196 +5,214 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".locataire">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:layout_marginBottom="20dp"
-    android:layout_marginTop="70dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Que cherchez-vous louer?"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginRight="50dp"
-        android:gravity="center"/>
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="7dp"
+        android:layout_height="19dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back Button"
+        android:src="@drawable/baseline_chevron_left_24" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/imageViewMain"
-            android:layout_width="23dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:src="@drawable/img" />
-
-        <ImageView
-            android:id="@+id/imageViewSecondary"
-            android:layout_width="40dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:src="@drawable/img_1" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="83dp"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="139dp"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_design"
-            android:text="Maison" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="62dp"
-            android:background="@drawable/btn_design"
-            android:text="Appartement" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choisissez la localisation où vous souhaitez louer votre logement?"
-            android:textSize="15sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:text="Que cherchez-vous louer?"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/maisonButton"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/img" />
 
+            <ImageView
+                android:id="@+id/apparbutton"
+                android:layout_width="90dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="100dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/img_1" />
+        </LinearLayout>
+        <Space
+            android:layout_width="30dp"
+            android:layout_height="40dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="9dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Type de logement:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/Type"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choisissez la localisation où vous souhaitez louer votre logement?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="-30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text="Ville:"
+                        android:textColor="@color/move"
+                        android:textSize="16sp"
+
+                        />
+
+                    <Spinner
+                        android:id="@+id/Ville_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="90dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Quartier:"
+                        android:textColor="@color/move"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/Quartier_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Veuillez choisir le prix de location de votre logement?"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="-30dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="Ville:"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="1dp"
+                    android:text="Prix:"
+                    android:textColor="@color/move"
                     android:textSize="16sp"
-                   />
+
+                    />
 
                 <Spinner
-                    android:id="@+id/Ville_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/prix_spinner"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1" />
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Quartier:"
-                android:textSize="16sp"
-                 />
-
-            <Spinner
-                android:id="@+id/Quartier_spinner"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/RetourButton"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/transparent"
+                    android:text="Ignorer"
+                    android:textColor="@color/move"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/suivantButton"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="100dp"
+                    android:backgroundTint="@color/orange"
+                    android:text="Chercher"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Veuillez choisir le prix de location de votre logement?"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginLeft="7dp"
-                android:text="Prix:"
-                android:textSize="16sp"
-                />
-
-            <Spinner
-                android:id="@+id/prix_spinner"
-                android:layout_width="130dp"
-                android:layout_height="40dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp">
-
-            <Button
-                android:id="@+id/RetourButton"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/transparent"
-                android:text="Retour"
-                android:textColor="@color/orange"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/suivantButton"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="100dp"
-                android:backgroundTint="@color/orange"
-                android:text="Suivant"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-
     </LinearLayout>
-</LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

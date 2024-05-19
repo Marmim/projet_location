@@ -57,7 +57,7 @@
                 android:background="@drawable/background_edittext"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Nom"
+                android:hint=" Nom"
                 android:textColor="@color/gray" />
 
             <EditText
@@ -69,7 +69,7 @@
                 android:background="@drawable/background_edittext"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint=" Prénom"
+                android:hint="  Prénom"
                 android:textColor="@color/gray" />
         </LinearLayout>
 
