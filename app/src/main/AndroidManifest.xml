@@ -17,6 +17,9 @@
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
         <activity
+            android:name=".fav"
+            android:exported="false" />
+        <activity
             android:name=".notification"
             android:exported="false" />
         <activity

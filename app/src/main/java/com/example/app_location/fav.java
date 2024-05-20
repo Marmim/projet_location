@@ -1,24 +1,30 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Maison extends AppCompatActivity {
-BottomNavigationView bottomNavigationView;
+public class fav extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_maison);
+        setContentView(R.layout.activity_fav);
 
         bottomNavigationView = findViewById(R.id.bot_nav);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
 
+
+        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
@@ -46,5 +52,7 @@ BottomNavigationView bottomNavigationView;
             }
             return false;
         });
+
+
     }
 }

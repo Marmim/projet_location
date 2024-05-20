@@ -29,7 +29,7 @@ public class liste_propriete extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), Favoris.class);
+                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
                 startActivity(hometIntent);
                 return true;
             }
