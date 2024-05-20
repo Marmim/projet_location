@@ -1,5 +1,6 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 

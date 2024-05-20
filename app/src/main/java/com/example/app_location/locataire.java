@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -23,7 +22,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class locataire  extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
     private Button suivantButton,RetourButton;
     private Spinner Ville_spinner,Quartier_spinner,Type;
     private ImageButton backButton;
@@ -37,7 +35,6 @@ public class locataire  extends AppCompatActivity {
         Quartier_spinner=findViewById(R.id.Quartier_spinner);
         backButton = findViewById(R.id.backButton);
         Type=findViewById(R.id.Type);
-        bottomNavigationView = findViewById(R.id.bot_nav);
 
 
         suivantButton.setOnClickListener(new View.OnClickListener() {
@@ -106,34 +103,6 @@ public class locataire  extends AppCompatActivity {
                         }
                     }
                 });
-        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
-                startActivity(hometIntent);
-                return true;
-            } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.profilmenu) {
-                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            return false;
-        });
 
     }
     }
