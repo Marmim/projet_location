@@ -12,16 +12,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="7dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back Button"
+            android:src="@drawable/baseline_chevron_left_24" />
     <EditText
         android:id="@+id/editTextText4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:drawableLeft="@drawable/baseline_chevron_left_24"
         android:text="Propriétaire"
         android:textAlignment="center"
         android:textSize="20dp"
-        android:layout_marginTop="20dp"/>
+        android:inputType="none"
+        android:focusable="false" />
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="match_parent"

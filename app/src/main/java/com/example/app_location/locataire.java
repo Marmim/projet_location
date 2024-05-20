@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class locataire  extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private Button suivantButton,RetourButton;
-    private Spinner Ville_spinner,Quartier_spinner,Type;
+    private Spinner Ville_spinner,Quartier_spinner,Type,prix_spinner;
     private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class locataire  extends AppCompatActivity {
         Quartier_spinner=findViewById(R.id.Quartier_spinner);
         backButton = findViewById(R.id.backButton);
         Type=findViewById(R.id.Type);
+        prix_spinner=findViewById(R.id.prix_spinner);
 
 
         suivantButton.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +106,27 @@ public class locataire  extends AppCompatActivity {
                         }
                     }
                 });
+        CollectionReference prixRef = db.collection("Prix");
+        ArrayList<String> prix = new ArrayList<String>();
+
+        prixRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                prix.add(document.getId());
+                            }
+                            // Create adapter and set it to the spinner here
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, prix.toArray(new String[prix.size()]));
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            prix_spinner.setAdapter(dataAdapter);
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
         bottomNavigationView = findViewById(R.id.bot_nav);
 
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
@@ -112,11 +134,11 @@ public class locataire  extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
+                Intent hometIntent = new Intent(getApplicationContext(), locataire.class);
                 startActivity(hometIntent);
                 return true;
             } else  if (itemId == R.id.favoris) {
@@ -125,7 +147,7 @@ public class locataire  extends AppCompatActivity {
                 return true;
             }
             else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
                 startActivity(hometIntent);
                 return true;
             }

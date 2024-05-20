@@ -66,7 +66,7 @@ public class proprietaire extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
@@ -79,12 +79,12 @@ public class proprietaire extends AppCompatActivity {
                 return true;
             }
             else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
                 startActivity(hometIntent);
                 return true;
             }
             else if (itemId == R.id.profilmenu) {
-                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
+                Intent hometIntent = new Intent(getApplicationContext(), ProfilProprietaire.class);
                 startActivity(hometIntent);
                 return true;
             }
@@ -105,7 +105,7 @@ public class proprietaire extends AppCompatActivity {
         AnnulerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(proprietaire.this, liste_propriete.class);
+                Intent intent = new Intent(proprietaire.this, tableau_bord.class);
                 startActivity(intent);
             }
         });
@@ -195,7 +195,7 @@ public class proprietaire extends AppCompatActivity {
                     .addOnSuccessListener(documentReference -> {
                         Toast.makeText(proprietaire.this, "Votre propriété est publiée", Toast.LENGTH_SHORT).show();
                         // Rediriger vers la page suivante après l'enregistrement des données
-                        Intent intent = new Intent(proprietaire.this, tableau_bord.class);
+                        Intent intent = new Intent(proprietaire.this, liste_propriete.class);
                         startActivity(intent);
                     })
                     .addOnFailureListener(e -> Toast.makeText(proprietaire.this, "Erreur lors de l'enregistrement des données.", Toast.LENGTH_SHORT).show());
