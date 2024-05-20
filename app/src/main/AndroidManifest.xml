@@ -20,7 +20,7 @@
             android:name=".notification"
             android:exported="false" />
         <activity
-            android:name=".favoris"
+            android:name=".Favoris"
             android:exported="false" />
         <activity
             android:name=".tableau_bord"

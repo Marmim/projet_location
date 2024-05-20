@@ -1,8 +1,5 @@
 package com.example.app_location;
 
-import static android.content.ContentValues.TAG;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,15 +14,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -48,7 +44,9 @@ public class proprietaire extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.proprietaire);
+
         bottomNavigationView = findViewById(R.id.bot_nav);
         LancerButton = findViewById(R.id.LancerButton);
         AnnulerButton = findViewById(R.id.AnnulerButton);
@@ -76,7 +74,7 @@ public class proprietaire extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
+                Intent hometIntent = new Intent(getApplicationContext(), Favoris.class);
                 startActivity(hometIntent);
                 return true;
             }

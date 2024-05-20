@@ -3,6 +3,7 @@ package com.example.app_location;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,6 +14,7 @@ public class tableau_bord extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+            EdgeToEdge.enable(this);
         setContentView(R.layout.tableau_bord);
 
             bottomNavigationView = findViewById(R.id.bot_nav);
@@ -26,13 +28,13 @@ public class tableau_bord extends AppCompatActivity {
                     startActivity(hometIntent);
                     return true;
                 } else if (itemId == R.id.search) {
-                    Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                    Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                     startActivity(hometIntent);
                     return true;
-            /*} else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), Accueil.class);
+                } else  if (itemId == R.id.favoris) {
+                Intent hometIntent = new Intent(getApplicationContext(), Favoris.class);
                 startActivity(hometIntent);
-                return true;*/
+                return true;
                 }
                 else if (itemId == R.id.notif) {
                     Intent hometIntent = new Intent(getApplicationContext(), Maison.class);

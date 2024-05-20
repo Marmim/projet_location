@@ -1,6 +1,5 @@
 package com.example.app_location;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -30,7 +29,7 @@ public class liste_propriete extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
+                Intent hometIntent = new Intent(getApplicationContext(), Favoris.class);
                 startActivity(hometIntent);
                 return true;
             }

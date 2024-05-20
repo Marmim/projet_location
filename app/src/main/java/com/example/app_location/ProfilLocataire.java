@@ -5,9 +5,6 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,7 +33,7 @@ public class ProfilLocataire extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
+                Intent hometIntent = new Intent(getApplicationContext(), Favoris.class);
                 startActivity(hometIntent);
                 return true;
             }
