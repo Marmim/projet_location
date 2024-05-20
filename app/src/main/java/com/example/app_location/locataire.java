@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class locataire  extends AppCompatActivity {
     private Button suivantButton,RetourButton;
-    private Spinner Ville_spinner,Quartier_spinner,Type;
+    private Spinner Ville_spinner,Quartier_spinner,Type,prix_spinner;
     private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class locataire  extends AppCompatActivity {
         Quartier_spinner=findViewById(R.id.Quartier_spinner);
         backButton = findViewById(R.id.backButton);
         Type=findViewById(R.id.Type);
+        prix_spinner=findViewById(R.id.prix_spinner);
 
 
         suivantButton.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +49,7 @@ public class locataire  extends AppCompatActivity {
         RetourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(locataire.this, QuiEtes.class);
+                Intent intent = new Intent(locataire.this, liste_propriete.class);
                 startActivity(intent);
             }
         });
@@ -98,6 +99,27 @@ public class locataire  extends AppCompatActivity {
                             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, type.toArray(new String[type.size()]));
                             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             Type.setAdapter(dataAdapter);
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+        CollectionReference PrixRef = db.collection("Prix");
+        ArrayList<String> prix = new ArrayList<String>();
+
+        PrixRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("TAG", document.getId() + " => " + document.getData());
+                                prix.add(document.getId());
+                            }
+                            // Create adapter and set it to the spinner here
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, prix.toArray(new String[prix.size()]));
+                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            prix_spinner.setAdapter(dataAdapter);
                         } else {
                             Log.w("TAG", "Error getting documents.", task.getException());
                         }

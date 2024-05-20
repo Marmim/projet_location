@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     tools:context=".liste_propriete">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
         android:orientation="vertical"
-    android:layout_centerHorizontal="true"
-    android:gravity="center">
-<EditText
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_background">
+
+        <EditText
             android:id="@+id/contacte"
             android:layout_width="300dp"
             android:layout_height="40dp"
@@ -25,131 +25,171 @@
             android:padding="8dp"
             android:layout_marginLeft="10dp"
             android:drawableRight="@drawable/search"/>
+    </LinearLayout>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="120dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/imageView3"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card1"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="20dp"
-                    app:srcCompat="@drawable/m1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Casablanca,bélvedere"
-                    android:layout_marginLeft="100dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="7dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView3"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_marginTop="20dp"
+                            app:srcCompat="@drawable/m1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="Casablanca, bélvedere"
+                            android:layout_gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maison 2 étages"
+                            android:layout_gravity="center"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4000DH/mois"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Maison 2étages"
-                    android:layout_marginLeft="120dp"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="7dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/m2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Marrakech, Guéliz"
+                            android:layout_gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Appartement/résidence calme"
+                            android:layout_gravity="center"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3000DH/mois"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="4000DH/mois"
-                    android:layout_marginLeft="130dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="7dp">
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="261dp"
-                    android:layout_height="199dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/m2" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Marrakech,Guéliz"
-                    android:layout_marginLeft="110dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/m3" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Appartement/résidence calme"
-                    android:layout_marginLeft="63dp"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3000DH/mois"
-                    android:layout_marginLeft="133dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chefchaouen, centre"
+                            android:layout_gravity="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="261dp"
-                    android:layout_height="199dp"
-                    android:layout_gravity="center"
-                    app:srcCompat="@drawable/m3" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maison traditionnelle"
+                            android:layout_gravity="center"
+                            android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chefchaouen,centre"
-                    android:layout_marginLeft="100dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3900DH/mois"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Maison traditionnelle"
-                    android:layout_marginLeft="90dp"
-                    android:textSize="20sp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3900DH/mois"
-                    android:layout_marginLeft="133dp"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-        </LinearLayout>
-        </ScrollView>
+            </LinearLayout>
+</ScrollView>
 
 
-
-</LinearLayout>
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bot_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_menu"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="619dp"
-            app:itemIconTint="@color/black"
-            app:labelVisibilityMode="labeled"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bot_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_menu"
+        app:itemIconTint="@color/black"
+        app:labelVisibilityMode="labeled"/>
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
