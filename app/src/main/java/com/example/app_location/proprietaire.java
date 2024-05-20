@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class proprietaire extends AppCompatActivity {
+    BottomNavigationView bottomNavigationView;
 
     private EditText photos,description,contacte,tarif;
     private Button LancerButton, AnnulerButton;
@@ -45,9 +47,10 @@ public class proprietaire extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proprietaire);
-
+        bottomNavigationView = findViewById(R.id.bot_nav);
         LancerButton = findViewById(R.id.LancerButton);
         AnnulerButton = findViewById(R.id.AnnulerButton);
         backButton = findViewById(R.id.backButton);
@@ -61,6 +64,38 @@ public class proprietaire extends AppCompatActivity {
 
 
         Ville_spinner = findViewById(R.id.Ville_spinner);
+
+        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                startActivity(hometIntent);
+                return true;
+            } else if (itemId == R.id.search) {
+                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                startActivity(hometIntent);
+                return true;
+            } else  if (itemId == R.id.favoris) {
+                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            else if (itemId == R.id.notif) {
+                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            else if (itemId == R.id.profilmenu) {
+                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            return false;
+        });
+
+
+
 
 // quand je clique sur lancer les donnees saisi seront enregistré
         LancerButton.setOnClickListener(new View.OnClickListener() {
@@ -212,5 +247,7 @@ public class proprietaire extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+
     }
 }

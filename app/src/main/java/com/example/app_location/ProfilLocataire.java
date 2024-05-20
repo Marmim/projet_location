@@ -32,13 +32,13 @@ public class ProfilLocataire extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
-            /*} else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), Accueil.class);
+            } else  if (itemId == R.id.favoris) {
+                Intent hometIntent = new Intent(getApplicationContext(), favoris.class);
                 startActivity(hometIntent);
-                return true;*/
+                return true;
             }
             else if (itemId == R.id.notif) {
                 Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
