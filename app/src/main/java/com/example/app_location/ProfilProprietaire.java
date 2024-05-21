@@ -37,12 +37,12 @@ public class ProfilProprietaire extends AppCompatActivity {
                 return true;
             }
             else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
                 startActivity(hometIntent);
                 return true;
             }
             else if (itemId == R.id.profilmenu) {
-                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
+                Intent hometIntent = new Intent(getApplicationContext(), ProfilProprietaire.class);
                 startActivity(hometIntent);
                 return true;
             }

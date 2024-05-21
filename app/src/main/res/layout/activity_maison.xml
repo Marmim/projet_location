@@ -8,6 +8,14 @@
     tools:context=".Maison"
     tools:ignore="Orientation">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_background"
+        android:layout_marginBottom="30dp">
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="match_parent"
@@ -17,6 +25,7 @@
         android:text="Maison"
         android:textAlignment="center"
         android:textSize="20dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
