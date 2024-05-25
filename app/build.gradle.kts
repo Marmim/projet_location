@@ -45,6 +45,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-storage:20.0.0")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation ("com.google.firebase:firebase-messaging:23.0.0")
+    implementation ("com.google.android.libraries.places:places:2.5.0")
 
 
 }

@@ -10,12 +10,21 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/iconPro"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/iconPro"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDHynPsigaOqir66zhLd102X2ugoZdZFEU"/>
+        <activity
+            android:name=".ConversationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
         <activity
             android:name=".fav"
             android:exported="false" />
@@ -23,16 +32,13 @@
             android:name=".notification"
             android:exported="false" />
         <activity
-            android:name=".Favoris"
-            android:exported="false" />
-        <activity
             android:name=".tableau_bord"
             android:exported="false" />
         <activity
-            android:name=".proprietaire"
+            android:name=".locataire"
             android:exported="false" />
         <activity
-            android:name=".locataire"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Contrat"
@@ -56,10 +62,7 @@
             android:name=".ProfilLocataire"
             android:exported="false" />
         <activity
-            android:name=".locataire"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".proprietaire"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
