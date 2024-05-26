@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class proprietaire extends AppCompatActivity {
     private ImageButton backButton ,imageViewSecondary,imageViewMain;
     private final int MENU_PROFIL = R.id.profilmenu;
     private Spinner Ville_spinner,Type;
+    private ImageView add_photo_icon;
 
 
     @Override
@@ -46,7 +48,7 @@ public class proprietaire extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.proprietaire);
-
+        add_photo_icon = findViewById(R.id.add_photo_icon);
         bottomNavigationView = findViewById(R.id.bot_nav);
         LancerButton = findViewById(R.id.LancerButton);
         AnnulerButton = findViewById(R.id.AnnulerButton);
@@ -55,11 +57,7 @@ public class proprietaire extends AppCompatActivity {
         description = findViewById(R.id.description);
         contacte = findViewById(R.id.contacte);
         tarif = findViewById(R.id.tarif);
-
         Type=findViewById(R.id.Type);
-
-
-
         Ville_spinner = findViewById(R.id.Ville_spinner);
 
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
@@ -163,6 +161,8 @@ public class proprietaire extends AppCompatActivity {
                         }
                     }
                 });
+
+
 
 
     }

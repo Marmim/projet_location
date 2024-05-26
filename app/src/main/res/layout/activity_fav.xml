@@ -12,18 +12,25 @@
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
         android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/gradient_background">
         <EditText
             android:id="@+id/editfav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:drawableLeft="@drawable/baseline_chevron_left_24"
+            android:drawableRight="@drawable/baseline_favorite_24"
             android:text="Liste de favoris"
             android:textAlignment="center"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
-            android:inputType="none"
-            android:focusable="false" />/>
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -48,9 +55,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="90dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginRight="70dp"
+                        android:layout_marginRight="50dp"
                         android:text="Casablanca,bélvedere"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -59,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:drawableRight="@drawable/baseline_favorite_24"/>
+                        android:drawableRight="@drawable/orangeheart"/>
                 </LinearLayout>
 
                 <TextView
@@ -93,14 +100,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Casablanca,Ain sbaa"
-                        android:layout_marginLeft="110dp"
+                        android:layout_marginLeft="90dp"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_marginRight="70dp"/>
+                        android:layout_marginRight="50dp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/baseline_favorite_24"/>
+                        android:drawableRight="@drawable/orangeheart"/>
                 </LinearLayout>
 
                 <TextView
@@ -137,7 +144,8 @@
                     android:layout_height="wrap_content"
                     android:text="Maison traditionnelle"
                     android:layout_marginLeft="90dp"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:drawableRight="@drawable/orangeheart"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

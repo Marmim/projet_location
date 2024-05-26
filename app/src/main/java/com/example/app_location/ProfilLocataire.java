@@ -49,7 +49,7 @@ public class ProfilLocataire extends AppCompatActivity {
                 return true;
             }
             else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
                 startActivity(hometIntent);
                 return true;
             }
