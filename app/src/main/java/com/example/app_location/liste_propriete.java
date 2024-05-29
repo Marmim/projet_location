@@ -2,17 +2,39 @@ package com.example.app_location;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class liste_propriete extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    private RecyclerView recyclerView;
+    private proprieteAdapter propertyAdapter;
+    private List<Property> propertyList;
+    private TextView noDataText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liste_propriete);
+
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(propertyAdapter);
+
+        fetchDataFromFirestore();
+        recyclerView = findViewById(R.id.recyclerView);
+        noDataText = findViewById(R.id.noDataText);
+        propertyList = new ArrayList<>();
+        propertyAdapter = new proprieteAdapter(propertyList);
 
         bottomNavigationView = findViewById(R.id.bot_nav);
 
@@ -47,4 +69,31 @@ public class liste_propriete extends AppCompatActivity {
         });
 
     }
-}
+
+
+
+
+
+        private void fetchDataFromFirestore() {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("properties")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Property property = document.toObject(Property.class);
+                                propertyList.add(property);
+                            }
+                            propertyAdapter.notifyDataSetChanged();
+                            recyclerView.setVisibility(View.VISIBLE);
+                            noDataText.setVisibility(View.GONE);
+                        } else {
+                            noDataText.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                        }
+                    })
+                    .addOnFailureListener(e -> Toast.makeText(ListePropriete.this, "Erreur lors de la récupération des données.", Toast.LENGTH_SHORT).show());
+        }
+    }
+
+

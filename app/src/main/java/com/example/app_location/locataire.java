@@ -21,18 +21,24 @@ import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRe
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class locataire  extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private Button suivantButton,RetourButton;
     private Spinner Ville_spinner,Quartier_spinner,prix_spinner,Type;
     private ImageButton backButton;
+
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +77,11 @@ public class locataire  extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference citiesRef = db.collection("Ville");
+         db = FirebaseFirestore.getInstance();
+
+
+
+       CollectionReference citiesRef = db.collection("Ville");
         ArrayList<String> villes = new ArrayList<String>();
 
         citiesRef.get()
@@ -93,6 +102,23 @@ public class locataire  extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+        Ville_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Log.i("selected", Ville_spinner.getSelectedItem().toString());
+                getQuartiers(Ville_spinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
 
         CollectionReference typeRef = db.collection("Type_logement");
         ArrayList<String> type = new ArrayList<String>();
@@ -140,6 +166,7 @@ public class locataire  extends AppCompatActivity {
                 });
 
 
+/*
 
         // Initialisez l'API Places
         if (!Places.isInitialized()) {
@@ -160,6 +187,7 @@ public class locataire  extends AppCompatActivity {
                 // Do nothing
             }
         });
+*/
 
 
 
@@ -196,7 +224,35 @@ public class locataire  extends AppCompatActivity {
         });
 
     }
-    private void loadDistricts(String cityName) {
+
+    public void getQuartiers(String city)
+    {
+        DocumentReference docRef = db.collection("Ville").document(city);
+
+        // Fetch the document using get()
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        List<String> quartiers = ((List<Object>) document.getData().get("quartiers")).stream().map(object -> Objects.toString(object, null))
+                                .collect(Collectors.toList());
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(locataire.this, android.R.layout.simple_spinner_item, quartiers.toArray(new String[quartiers.size()]));
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        Quartier_spinner.setAdapter(dataAdapter);
+                    } else {
+                        Log.d("Document data:", "No such document!");
+                    }
+                } else {
+                    Log.d("Error getting document:", task.getException().toString());
+                }
+            }
+        });
+    }
+
+   /* private void loadDistricts(String cityName) {
         // Créez une requête pour rechercher les lieux correspondant au nom de la ville
         FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
                 .setQuery(cityName + " neighborhoods")
@@ -223,7 +279,7 @@ public class locataire  extends AppCompatActivity {
             Log.e("API_FAILURE", "Erreur lors de la recherche des quartiers : ", exception);
         });
     }
-
+*/
 }
 
 

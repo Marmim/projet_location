@@ -6,13 +6,15 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/iconPro"
+        android:icon="@drawable/drawablelogo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/iconPro"
+        android:roundIcon="@drawable/drawablelogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_location"
         tools:targetApi="31">
@@ -23,7 +25,7 @@
             android:name=".ConversationsActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".locataire"
             android:exported="false" />
         <activity
             android:name=".fav"
@@ -35,7 +37,7 @@
             android:name=".tableau_bord"
             android:exported="false" />
         <activity
-            android:name=".locataire"
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -55,6 +57,7 @@
         <activity
             android:name=".AuthentifActivity2"
             android:exported="false" />
+
         <activity
             android:name=".ProfilProprietaire"
             android:exported="false" />
