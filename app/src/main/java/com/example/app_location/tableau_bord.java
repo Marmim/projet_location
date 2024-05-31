@@ -24,7 +24,7 @@ public class tableau_bord extends AppCompatActivity {
             bottomNavigationView.setOnItemSelectedListener(item -> {
                 int itemId = item.getItemId();
                 if (itemId == R.id.nav_home) {
-                    Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                    Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                     startActivity(hometIntent);
                     return true;
                 } else if (itemId == R.id.search) {

@@ -36,18 +36,21 @@
         android:textAlignment="center"
         android:textColor="@color/blue"
         android:layout_marginBottom="100dp"/>
-    <TextView
-        android:id="@+id/editTextText5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:drawableLeft="@drawable/baseline_person_24"
-        android:text="  informations personnelles"
-        android:drawableRight="@drawable/baseline_chevron_right_24"
-        android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
-    <TextView
+
+        <TextView
+            android:id="@+id/editTextText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawableRight="@drawable/baseline_chevron_right_24"
+            android:ems="10"
+            android:text="  informations personnelles"
+            android:textSize="15dp" />
+
+        <TextView
         android:id="@+id/editTextText6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +60,8 @@
         android:text="  Paiements et versements"
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:clickable="true"/>
     <TextView
         android:id="@+id/editTextText7"
         android:layout_width="match_parent"
@@ -68,7 +72,8 @@
         android:text="  Notifications"
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:clickable="true"/>
     <TextView
         android:id="@+id/editTextText8"
         android:layout_width="match_parent"
@@ -90,7 +95,8 @@
         android:text="  Publier une annonce"
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:clickable="true"/>
     <TextView
         android:id="@+id/editTextText10"
         android:layout_width="match_parent"
@@ -101,7 +107,8 @@
         android:text="  Dashboard"
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:clickable="true"/>
     <TextView
         android:id="@+id/editTextText11"
         android:layout_width="match_parent"
@@ -113,7 +120,8 @@
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
         android:layout_marginBottom="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:clickable="true"/>
     <TextView
         android:id="@+id/editTextText12"
         android:layout_width="match_parent"
@@ -124,7 +132,8 @@
         android:text="  Se déconnecter"
         android:drawableRight="@drawable/baseline_chevron_right_24"
         android:textSize="15dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:clickable="true"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"

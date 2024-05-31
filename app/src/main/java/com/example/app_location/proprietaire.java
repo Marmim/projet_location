@@ -221,7 +221,7 @@ public class proprietaire extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+         return super.onOptionsItemSelected(item);
         }
 
 
