@@ -276,6 +276,7 @@ public class proprietaire extends AppCompatActivity {
         String types = Type.getSelectedItem().toString();
         String quartier = Quartier_spinner.getSelectedItem().toString();
 
+
         if (descriptionText.isEmpty() || contact.isEmpty() || tarifText.isEmpty() || ville.isEmpty() || types.isEmpty() || quartier.isEmpty()) {
             Toast.makeText(this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show();
             return;
@@ -302,12 +303,14 @@ public class proprietaire extends AppCompatActivity {
                     userData.put("quartier", quartier);
                     userData.put("type", types);
 
-                    db.collection("users")
+
+                    db.collection("Property")
                             .add(userData)
                             .addOnSuccessListener(documentReference -> {
                                 Toast.makeText(proprietaire.this, "Votre propriété est publiée", Toast.LENGTH_SHORT).show();
                                 // Rediriger vers la page suivante après l'enregistrement des données
                                 Intent intent = new Intent(proprietaire.this, liste_propriete.class);
+
                                 startActivity(intent);
                             })
                             .addOnFailureListener(e -> Toast.makeText(proprietaire.this, "Erreur lors de l'enregistrement des données.", Toast.LENGTH_SHORT).show());
