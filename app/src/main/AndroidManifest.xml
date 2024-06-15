@@ -40,7 +40,7 @@
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".proprietaire"
             android:exported="false" />
         <activity
             android:name=".Contrat"
@@ -52,7 +52,10 @@
             android:name=".QuiEtes"
             android:exported="false" />
         <activity
-            android:name=".liste_propriete"
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsPropriete"
             android:exported="false" />
         <activity
             android:name=".AuthentifActivity2"
@@ -65,7 +68,7 @@
             android:name=".ProfilLocataire"
             android:exported="false" />
         <activity
-            android:name=".proprietaire"
+            android:name=".liste_propriete"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

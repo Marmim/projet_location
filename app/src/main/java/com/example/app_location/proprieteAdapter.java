@@ -1,6 +1,7 @@
 package com.example.app_location;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,61 +18,62 @@ import java.util.List;
 
 public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.PropertyViewHolder> {
 
+    private List<Property> propertyList;
+    private Context context;
 
-    Context context;
-    ArrayList<Property> PropretyArrayList;
-
-    public proprieteAdapter(Context context, ArrayList<Property> PropretyArrayList) {
+    public proprieteAdapter(List<Property> propertyList, Context context) {
+        this.propertyList = propertyList;
         this.context = context;
-        this.PropretyArrayList = PropretyArrayList;
     }
 
     @NonNull
     @Override
-    public proprieteAdapter.PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View v=LayoutInflater.from(context).inflate(R.layout.liste_propriete,parent,false);
-        return new PropertyViewHolder(v);
+    public PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.model, parent, false);
+        return new PropertyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull proprieteAdapter.PropertyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
+        Property property = propertyList.get(position);
 
-        Property property=PropretyArrayList.get(position);
-
-        // Utilisez Glide pour charger l'image
-        Glide.with(context)
-                .load(property.getPhoto())
-                .into(holder.photo);
         holder.type.setText(property.getType());
         holder.description.setText(property.getDescription());
-        holder.tarif.setText(property.getTarif());
+        holder.tarif.setText(property.getTarif() + " dh");
         holder.ville.setText(property.getVille());
         holder.quartier.setText(property.getQuartier());
 
+        Glide.with(context).load(property.getPhoto()).into(holder.photo);
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailsPropriete.class);
+                intent.putExtra("propertyId", property.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return PropretyArrayList.size();
+        return propertyList.size();
     }
 
-    public static class PropertyViewHolder extends RecyclerView.ViewHolder{
+    public static class PropertyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView type,quartier,ville,tarif,description;
+        TextView type, quartier, ville, tarif, description;
         ImageView photo;
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
-            type=itemView.findViewById(R.id.tvType);
-            quartier=itemView.findViewById(R.id.tvQuartier);
-            ville=itemView.findViewById(R.id.tvVille);
-            tarif=itemView.findViewById(R.id.tvTarif);
-            description=itemView.findViewById(R.id.tvDescription);
-            photo=itemView.findViewById(R.id.image);
-
+            type = itemView.findViewById(R.id.tvType);
+            quartier = itemView.findViewById(R.id.tvQuartier);
+            ville = itemView.findViewById(R.id.tvVille);
+            tarif = itemView.findViewById(R.id.tvTarif);
+            description = itemView.findViewById(R.id.tvDescription);
+            photo = itemView.findViewById(R.id.image);
         }
     }
 }

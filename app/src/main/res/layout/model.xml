@@ -76,16 +76,4 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-
-
-<com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bot_nav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/black"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu" />
-
-
 </RelativeLayout>

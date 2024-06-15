@@ -34,12 +34,12 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/maison" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/maison" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -54,61 +54,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:drawableRight="@drawable/baseline_favorite_24"
             android:ems="10"
-            android:textStyle="bold"
             android:text="Superbe maison à louer au belveders casablanca"
             android:textSize="15dp"
-            android:drawableRight="@drawable/baseline_favorite_24"
-            android:layout_marginBottom="20dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/editTextText7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
             android:text="  4000dh/mois"
             android:textSize="15dp"
-            android:layout_marginBottom="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/editTextText8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
             android:ems="10"
             android:text="  On vous propose une charmante maison de 82m²;   dispose d'une cuisine équipée avec balcon et un salon . Il y a 4 chambres , Très ensoleillé , très calme .
  Programmez dès maintenant votre visite pour cette maison  à casablanca!"
-            android:textSize="15dp"
-            android:layout_marginBottom="20dp"/>
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/editTextText9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
             android:ems="10"
-            android:textStyle="bold"
             android:text="  0696541190"
             android:textSize="15dp"
-            android:layout_marginBottom="20dp"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/editTextText10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
             android:ems="10"
-            android:textStyle="bold"
             android:text="  L'emplacement de la propriété à louer"
             android:textSize="15dp"
-            android:layout_marginBottom="20dp"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_weight="1"
             android:layout_marginRight="50dp"
+            android:layout_weight="1"
             app:srcCompat="@drawable/maps" />
 
-</LinearLayout>
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"
         android:layout_width="wrap_content"

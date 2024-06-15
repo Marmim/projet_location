@@ -2,7 +2,17 @@ package com.example.app_location;
 
 
     public class Property {
+        private double id;
         private String photo;
+
+        public double getId() {
+            return id;
+        }
+
+        public void setId(double id) {
+            this.id = id;
+        }
+
         private String description;
         private String contact;
         private String tarif;
@@ -12,6 +22,16 @@ package com.example.app_location;
 
         public Property() {
             // Nécessaire pour la sérialisation/désérialisation de Firestore
+        }
+
+        public Property(String photo, String description, String contact, String tarif, String ville, String quartier, String type) {
+            this.photo = photo;
+            this.description = description;
+            this.contact = contact;
+            this.tarif = tarif;
+            this.ville = ville;
+            this.quartier = quartier;
+            this.type = type;
         }
 
         // Getters et Setters
