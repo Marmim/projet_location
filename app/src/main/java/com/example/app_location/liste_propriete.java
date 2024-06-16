@@ -1,7 +1,13 @@
 package com.example.app_location;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +29,7 @@ public class liste_propriete extends AppCompatActivity {
     private proprieteAdapter propertyAdapter;
     private List<Property> propertyList;
     private FirebaseFirestore db;
-
+    private static final int PICK_IMAGE_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +39,30 @@ public class liste_propriete extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        SearchView searchView = findViewById(R.id.searchView);
+
         db = FirebaseFirestore.getInstance();
         propertyList = new ArrayList<>();
+
+        propertyAdapter = new proprieteAdapter(propertyList, this);
+        recyclerView.setAdapter(propertyAdapter);
+
         getPropertyListFromFirestore();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                propertyAdapter.filterList(newText);
+                return true;
+            }
+        });
+
+
     }
 
     private void getPropertyListFromFirestore() {
@@ -48,10 +75,11 @@ public class liste_propriete extends AppCompatActivity {
                             propertyList.clear();
                             for (DocumentSnapshot document : task.getResult()) {
                                 Property property = document.toObject(Property.class);
+                                assert property != null;
+                                property.setId(document.getId());
                                 propertyList.add(property);
                             }
-                            propertyAdapter = new proprieteAdapter(propertyList, liste_propriete.this);
-                            recyclerView.setAdapter(propertyAdapter);
+                            propertyAdapter.filterList("");
                         } else {
                             Log.w("Firestore", "Error getting documents.", task.getException());
                         }

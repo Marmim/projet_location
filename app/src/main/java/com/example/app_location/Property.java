@@ -2,14 +2,14 @@ package com.example.app_location;
 
 
     public class Property {
-        private double id;
+        private String id;
         private String photo;
 
-        public double getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(double id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -49,6 +49,7 @@ package com.example.app_location;
         public void setQuartier(String quartier) { this.quartier = quartier; }
         public String getType() { return type; }
         public void setType(String type) { this.type = type; }
+
     }
 
 

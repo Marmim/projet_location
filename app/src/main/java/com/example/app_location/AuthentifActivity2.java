@@ -63,6 +63,10 @@ public class AuthentifActivity2 extends AppCompatActivity {
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("nom", nom);
                                 user.put("prenom", prenom);
+                                user.put("email", email);
+                                user.put("password", password);
+
+
 
                                 DocumentReference docRef = db.collection("utilisateurs").document(email);
                                 docRef.set(user);

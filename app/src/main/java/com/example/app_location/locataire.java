@@ -39,6 +39,7 @@ public class locataire  extends AppCompatActivity {
     private ImageButton backButton;
 
     FirebaseFirestore db;
+    proprieteAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +57,22 @@ public class locataire  extends AppCompatActivity {
 
 
         suivantButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+              /*  String selectedVille = Ville_spinner.getSelectedItem().toString();
+                String selectedQuartier = Quartier_spinner.getSelectedItem().toString();
+                String selectedType = Type.getSelectedItem().toString();
+                String selectedPrix = prix_spinner.getSelectedItem().toString();
+
+
+                // Filtrer les propriétés dans l'adaptateur
+                adapter.FilterListe(selectedType, selectedVille, selectedQuartier, selectedPrix);*/
                 Intent intent = new Intent(locataire.this, liste_propriete.class);
                 startActivity(intent);
             }
         });
+
+
         RetourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +208,7 @@ public class locataire  extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {

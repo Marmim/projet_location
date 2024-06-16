@@ -25,7 +25,7 @@
             android:name=".ConversationsActivity"
             android:exported="false" />
         <activity
-            android:name=".locataire"
+            android:name=".liste_propriete"
             android:exported="false" />
         <activity
             android:name=".fav"
@@ -46,13 +46,13 @@
             android:name=".Contrat"
             android:exported="false" />
         <activity
-            android:name=".Maison"
+            android:name=".info_perso"
             android:exported="false" />
         <activity
             android:name=".QuiEtes"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".locataire"
             android:exported="false" />
         <activity
             android:name=".DetailsPropriete"
@@ -62,13 +62,13 @@
             android:exported="false" />
 
         <activity
-            android:name=".ProfilProprietaire"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ProfilLocataire"
             android:exported="false" />
         <activity
-            android:name=".liste_propriete"
+            android:name=".ProfilProprietaire"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -22,11 +22,10 @@
             android:contentDescription="Back Button"
             android:src="@drawable/baseline_chevron_left_24" />
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/editTextText3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Propriétaire"
         android:textAlignment="center"
         android:textSize="20dp"
         android:inputType="none"
@@ -38,18 +37,11 @@
         app:srcCompat="@drawable/femalepro" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Changer la photo de profile"
-        android:textAlignment="center"
-        android:textColor="@color/blue"
-        android:layout_marginBottom="100dp"/>
-    <TextView
         android:id="@+id/editTextText5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
         android:ems="10"
         android:drawableLeft="@drawable/baseline_person_24"
         android:text="  informations personnelles"
