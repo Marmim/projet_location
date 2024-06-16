@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.PropertyViewHolder> {
@@ -63,7 +62,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
 
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView type, quartier, ville, tarif, description;
+        TextView type, quartier, ville, tarif, description, contact;
         ImageView photo;
 
         public PropertyViewHolder(@NonNull View itemView) {
@@ -74,6 +73,8 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             tarif = itemView.findViewById(R.id.tvTarif);
             description = itemView.findViewById(R.id.tvDescription);
             photo = itemView.findViewById(R.id.image);
+            contact = itemView.findViewById(R.id.contactTextView);
+
         }
     }
 }

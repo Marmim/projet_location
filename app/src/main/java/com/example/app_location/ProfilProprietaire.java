@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
-
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class ProfilProprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
+    private EditText info , notifs , fav , logout , pub , dash , listloc ,pay ;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,16 @@ public class ProfilProprietaire extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_profil_proprietaire);
+
+        info = findViewById(R.id.info);
+        pay = findViewById(R.id.pay);
+        notifs = findViewById(R.id.notifs);
+        fav = findViewById(R.id.fav);
+        logout = findViewById(R.id.logout);
+        pub = findViewById(R.id.pub);
+        dash = findViewById(R.id.dash);
+        listloc = findViewById(R.id.listloc);
+
 
         bottomNavigationView = findViewById(R.id.bot_nav);
 
@@ -66,5 +78,40 @@ public class ProfilProprietaire extends AppCompatActivity {
             return false;
         });
 
+        notifs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, notification.class);
+                startActivity(intent);
+            }
+        });
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, fav.class);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        pub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this,proprietaire.class);
+                startActivity(intent);
+            }
+        });
+        dash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this,tableau_bord.class);
+                startActivity(intent);
+            }
+        });
     }
 }

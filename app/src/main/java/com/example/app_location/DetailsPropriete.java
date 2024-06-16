@@ -1,6 +1,5 @@
 package com.example.app_location;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,9 +11,8 @@ import com.bumptech.glide.Glide;
 public class DetailsPropriete extends AppCompatActivity {
 
     private ImageView imageViewProperty;
-    private TextView textViewType, textViewDescription, textViewTarif, textViewVille, textViewQuartier;
+    private TextView textViewType, textViewDescription, textViewTarif, textViewVille, textViewQuartier, textViewContact;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,24 +25,20 @@ public class DetailsPropriete extends AppCompatActivity {
         textViewTarif = findViewById(R.id.tarifTextView);
         textViewVille = findViewById(R.id.villeTextView);
         textViewQuartier = findViewById(R.id.quartierTextView);
+        textViewContact = findViewById(R.id.contactTextView);
 
         // Récupération des données passées depuis l'activité principale
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String photo = extras.getString("photo");
-            String type = extras.getString("type");
-            String description = extras.getString("description");
-            String tarif = extras.getString("tarif");
-            String ville = extras.getString("ville");
-            String quartier = extras.getString("quartier");
+        Property property = getIntent().getParcelableExtra("property");
 
-            // Affichage des données dans les vues
-            Glide.with(this).load(photo).into(imageViewProperty);
-            textViewType.setText("Type: " + type);
-            textViewDescription.setText("Description: " + description);
-            textViewTarif.setText("Tarif: " + tarif);
-            textViewVille.setText("Ville: " + ville);
-            textViewQuartier.setText("Quartier: " + quartier);
+        // Assure-toi que property n'est pas null avant de l'utiliser
+        if (property != null) {
+            Glide.with(this).load(property.getPhoto()).into(imageViewProperty);
+            textViewType.setText("Type: " + property.getType());
+            textViewDescription.setText("Description: " + property.getDescription());
+            textViewTarif.setText("Tarif: " + property.getTarif());
+            textViewVille.setText("Ville: " + property.getVille());
+            textViewQuartier.setText("Quartier: " + property.getQuartier());
+            textViewContact.setText("Contact: " + property.getContact());
         }
     }
 }

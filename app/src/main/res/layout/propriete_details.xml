@@ -10,7 +10,8 @@
         android:id="@+id/photoImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="Property Photo"/>
 
     <TextView
         android:id="@+id/typeTextView"
@@ -45,6 +46,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tarifTextView"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/contactTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descriptionTextView"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
