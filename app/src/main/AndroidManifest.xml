@@ -5,6 +5,7 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -34,10 +35,13 @@
             android:name=".notification"
             android:exported="false" />
         <activity
-            android:name=".tableau_bord"
+            android:name=".PayementActivity"
             android:exported="false" />
         <activity
             android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsPropriete"
             android:exported="false" />
         <activity
             android:name=".proprietaire"
@@ -55,20 +59,23 @@
             android:name=".locataire"
             android:exported="false" />
         <activity
-            android:name=".DetailsPropriete"
+            android:name=".tableau_bord"
             android:exported="false" />
         <activity
             android:name=".AuthentifActivity2"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ProfilProprietaire"
             android:exported="false" />
         <activity
             android:name=".ProfilLocataire"
             android:exported="false" />
         <activity
-            android:name=".ProfilProprietaire"
+            android:name=".MyProprieteActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

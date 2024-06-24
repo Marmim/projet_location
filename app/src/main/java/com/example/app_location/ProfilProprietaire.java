@@ -50,6 +50,28 @@ public class ProfilProprietaire extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfilProprietaire.this, info_perso.class);
+                Bundle b = new Bundle();
+                b.putString("role","proprietaire");
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+        TextView logoutTextView = findViewById(R.id.editTextText12);
+        logoutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(intent);
+            }
+        });
+
+        TextView listeProprieteTextView = findViewById(R.id.listePropText1);
+        listeProprieteTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, MyProprieteActivity.class);
                 startActivity(intent);
             }
         });

@@ -42,15 +42,30 @@ public class ProfilLocataire extends AppCompatActivity {
             }
         });
 
+
         // se deriger vers info.person
         TextView personalInfoTextView = findViewById(R.id.editTextText5);
         personalInfoTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProfilLocataire.this, info_perso.class);
+                Bundle b = new Bundle();
+                b.putString("role", "locataire");
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
+
+        TextView logoutTextView = findViewById(R.id.editTextText9);
+        logoutTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, MainActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(intent);
+            }
+        });
+
 
         // Récupérer les informations de l'utilisateur à partir de Firestore et les afficher dans l'EditText
         FirebaseAuth auth = FirebaseAuth.getInstance();

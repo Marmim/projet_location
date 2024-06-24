@@ -50,20 +50,23 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
             fstore=FirebaseFirestore.getInstance();
 
 
+            // Récupérer le Bundle
+            Bundle b = getIntent().getExtras();
+            String role = null;
+            if (b != null) {
+                role= b.getString("role");
+            }
 
-            // Récupérer le rôle de l'utilisateur
-            Intent intent = getIntent();
-            String role = intent.getStringExtra("role");
-
-           // Gestion du clic sur le bouton de retour
+            // Définir l'écouteur de clic pour le bouton backButton
+            String finalRole = role;
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Redirection en fonction du rôle
-                    if ("locataire".equals(role)) {
+                    if ("locataire".equals(finalRole)) {
                         Intent intent = new Intent(info_perso.this, ProfilLocataire.class);
                         startActivity(intent);
-                    } else if ("proprietaire".equals(role)) {
+                    } else if ("proprietaire".equals(finalRole)) {
                         Intent intent = new Intent(info_perso.this, ProfilProprietaire.class);
                         startActivity(intent);
                     }

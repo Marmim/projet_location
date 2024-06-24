@@ -59,12 +59,16 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="60dp">
+
         <Button
             android:id="@+id/buttonLoca"
             android:layout_width="230dp"
-            android:layout_height="50dp"
+            android:layout_height="48dp"
+            android:textAlignment="center"
             android:backgroundTint="@color/orange"
-            android:text="Je suis locataire" />
+            android:text="Je suis locataire"
+            android:drawableLeft="@drawable/baseline_maps_home_work_24" />
+
         <Button
             android:id="@+id/buttonPropr"
             android:layout_width="230dp"
@@ -72,7 +76,8 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/orange"
             android:layout_marginTop="30dp"
-            android:text="Je suis propriétaire" />
+            android:text="Je suis propriétaire"
+            android:drawableLeft="@drawable/baseline_key_24" />/>
 
 
     </LinearLayout>

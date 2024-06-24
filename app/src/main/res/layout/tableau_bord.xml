@@ -164,30 +164,16 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/paymentListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Maryame elomari"
-            android:textSize="18sp"
-            android:drawableLeft="@drawable/profile_icone"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+212762462490"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Oumaima Jamii"
-            android:textSize="18sp"
-            android:drawableLeft="@drawable/profile_icone"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+21267964309"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"/>
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
     </ScrollView>

@@ -76,14 +76,14 @@ public class locataire  extends AppCompatActivity {
         RetourButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(locataire.this, QuiEtes.class);
+                Intent intent = new Intent(locataire.this, liste_propriete.class);
                 startActivity(intent);
             }
         });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(locataire.this, liste_propriete.class);
+                Intent intent = new Intent(locataire.this, QuiEtes.class);
                 startActivity(intent);
             }
         });

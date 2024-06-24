@@ -27,7 +27,6 @@ public class QuiEtes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuiEtes.this, locataire.class);
-                intent.putExtra("role", "locataire");
                 startActivity(intent);
             }
         });
@@ -36,7 +35,6 @@ public class QuiEtes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuiEtes.this, proprietaire.class);
-                intent.putExtra("role", "proprietaire");
                 startActivity(intent);
             }
         });

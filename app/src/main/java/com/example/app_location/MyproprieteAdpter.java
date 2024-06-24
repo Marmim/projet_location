@@ -1,45 +1,47 @@
 package com.example.app_location;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.PropertyViewHolder> {
+public class MyproprieteAdpter extends RecyclerView.Adapter<MyproprieteAdpter.PropertyViewHolder> {
 
-    private List<Property> propertyList;
+    private static List<Property> propertyList;
     private List<Property> filteredPropertyList;
     private Context context;
+    private FirebaseFirestore db;
 
-
-    public proprieteAdapter(List<Property> propertyList, Context context) {
+    public MyproprieteAdpter(List<Property> propertyList, Context context) {
         this.propertyList = propertyList;
         this.filteredPropertyList = new ArrayList<>(propertyList);
         this.context = context;
+        this.db = FirebaseFirestore.getInstance(); // Initialiser Firebase Firestore
     }
 
     @NonNull
     @Override
     public PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.model, parent, false);
+        View view = layoutInflater.inflate(R.layout.modelmypropriete, parent, false);
         return new PropertyViewHolder(view);
     }
 
@@ -47,24 +49,19 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
     public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
         Property property = filteredPropertyList.get(position);
 
-
         holder.type.setText(property.getType());
         holder.tarif.setText(property.getTarif() + " DH");
-        holder.ville.setText(property.getVille());
         holder.quartier.setText(property.getQuartier());
         holder.disponibilite.setText(property.isPaid() ? "Non disponible" : "Disponible");
 
-        if (property.getPhoto() != null && !property.getPhoto().isEmpty()) {
-            String firstImageUrl = property.getPhoto().get(0);
-            // Utilisez une bibliothèque d'image comme Glide ou Picasso pour charger l'image
-            Glide.with(context).load(firstImageUrl).into(holder.photo);
-        }
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeleteConfirmationDialog(position, property.getId());
+            }
+        });
 
-        if (property.isFavorite()) {
-            holder.imageHeart.setImageResource(R.drawable.orangeheart); // Utiliser une icône de favori remplie
-        } else {
-            holder.imageHeart.setImageResource(R.drawable.baseline_favorite_24); // Utiliser une icône de favori non remplie
-        }
+        Glide.with(context).load(property.getPhoto()).into(holder.photo);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,26 +73,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
                 context.startActivity(intent);
             }
         });
-
-        holder.imageHeart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                FavorisDB favdb = new FavorisDB(v.getContext());
-                if(property.isFavorite())
-                    favdb.removeFavoris(property.getId());
-                else
-                    favdb.addFavoris(property.getId());
-                toggleFavoriteStatus(property);
-
-            }
-        });
     }
-
-
-
-
-
 
     @Override
     public int getItemCount() {
@@ -111,10 +89,8 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             for (Property property : propertyList) {
                 if (property.getType().toLowerCase().contains(text.toLowerCase()) ||
                         property.getDescription().toLowerCase().contains(text.toLowerCase()) ||
-                        property.getVille().toLowerCase().contains(text.toLowerCase()) ||
                         property.getQuartier().toLowerCase().contains(text.toLowerCase()) ||
-
-                property.getTarif().toLowerCase().contains(text.toLowerCase())) {
+                        property.getTarif().toLowerCase().contains(text.toLowerCase())) {
                     uniqueProperties.add(property);
                 }
             }
@@ -123,38 +99,51 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         notifyDataSetChanged();
     }
 
-
-
-    private void toggleFavoriteStatus(Property property) {
-
-        boolean newFavoriteStatus = !property.isFavorite(); // Inverse le statut favori actuel
-        Log.d("toggleFavoriteStatus", "Mise à jour du favori pour la propriété: " + property.getId() + " à " + newFavoriteStatus);
-        property.setFavorite(newFavoriteStatus);
-        notifyDataSetChanged();
-        Toast.makeText(context, "Favori mis à jour", Toast.LENGTH_SHORT).show();
-        Log.d("Firestore", "Favori mis à jour avec succès pour la propriété: " + property.getId());
-
-    }
-
-
-
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView type, quartier, ville, tarif,disponibilite;
-        ImageView photo,imageHeart;
+        TextView type, quartier, ville, disponibilite, tarif;
+        ImageView photo;
+        ImageButton btnDelete;
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
             type = itemView.findViewById(R.id.tvType);
             quartier = itemView.findViewById(R.id.tvQuartier);
-            ville = itemView.findViewById(R.id.tvVille);
+            disponibilite = itemView.findViewById(R.id.tvDisponibilite);
             tarif = itemView.findViewById(R.id.tvTarif);
             photo = itemView.findViewById(R.id.image);
-            disponibilite=itemView.findViewById(R.id.tvDisponibilite);
-            imageHeart = itemView.findViewById(R.id.imageHeart);
-
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
+    }
 
+    private void showDeleteConfirmationDialog(int position, String propertyId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Voulez-vous vraiment supprimer cette propriété ?");
+        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Supprimer la propriété de la liste et de Firestore
+                removeProperty(position, propertyId);
+            }
+        });
+        builder.setNegativeButton("Non", null);
+        builder.show();
+    }
 
+    public void removeProperty(int position, String propertyId) {
+        // Supprimer de Firestore
+        db.collection("Property").document(propertyId)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    // Supprimer de la liste principale et de la liste filtrée
+                    Property propertyToRemove = filteredPropertyList.get(position);
+                    propertyList.remove(propertyToRemove);
+                    filteredPropertyList.remove(position);
+                    notifyItemRemoved(position);
+                })
+                .addOnFailureListener(e -> {
+                    // Gérer l'échec de la suppression
+                    // Par exemple, afficher un message à l'utilisateur
+                });
     }
 }

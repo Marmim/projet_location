@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:queryHint="Rechercher une propriété"
-        android:layout_margin="16dp"
         android:background="@color/orange"
         android:padding="8dp"
         android:textColor="@android:color/black"

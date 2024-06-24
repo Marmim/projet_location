@@ -55,11 +55,17 @@ public class ConversationsActivity extends AppCompatActivity {
         if (task.isSuccessful()) {
             List<Conversation> conversations = new ArrayList<>();
             for (QueryDocumentSnapshot document : task.getResult()) {
-                conversations.add(document.toObject(Conversation.class));
+                try {
+                    Conversation conversation = document.toObject(Conversation.class);
+                    conversations.add(conversation);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             conversationsAdapter.updateConversations(conversations);
         } else {
             Toast.makeText(this, "Failed to load conversations.", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

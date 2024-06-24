@@ -4,14 +4,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     tools:context=".DetailsPropriete">
+    <Button
+        android:id="@+id/LouerButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:backgroundTint="@color/orange"
+        android:text="Louer"
+        android:textStyle="bold"
+        android:layout_below="@id/descriptionTextView"/>
 
-    <ImageView
+    <ImageSwitcher
         android:id="@+id/photoImageView"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:scaleType="centerCrop" />
+        android:layout_height="400dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_alignParentTop="true"
+      />
+    <ImageButton
+        android:id="@+id/next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="200dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
+    />
+    <ImageButton
+        android:id="@+id/previous"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/baseline_keyboard_arrow_left_24"
+        android:background="@android:color/transparent"
+        />
 
     <TextView
         android:id="@+id/contactTextView"
@@ -56,8 +87,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_menu"
         app:itemIconTint="@color/black"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu" />
+        app:labelVisibilityMode="labeled"/>
 
 </RelativeLayout>

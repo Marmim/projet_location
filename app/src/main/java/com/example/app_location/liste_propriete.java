@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
 
@@ -29,7 +30,11 @@ public class liste_propriete extends AppCompatActivity {
     private proprieteAdapter propertyAdapter;
     private List<Property> propertyList;
     private FirebaseFirestore db;
+    private ArrayList<Uri> mArrayUri;
+    private int position = 0;
     private static final int PICK_IMAGE_REQUEST = 1;
+    List<String> favoris;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +48,18 @@ public class liste_propriete extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         propertyList = new ArrayList<>();
+        FavorisDB favdb = new FavorisDB(this);
+        favoris=favdb.readFavoris();
+        /*for(String f:favoris)
+            Log.d("liste profav", String.valueOf(favoris.contains("6YUyTmePE1Ue4D0zgUXD")));*/
 
         propertyAdapter = new proprieteAdapter(propertyList, this);
         recyclerView.setAdapter(propertyAdapter);
 
         getPropertyListFromFirestore();
+
+
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -76,7 +88,16 @@ public class liste_propriete extends AppCompatActivity {
                             for (DocumentSnapshot document : task.getResult()) {
                                 Property property = document.toObject(Property.class);
                                 assert property != null;
+
                                 property.setId(document.getId());
+                                if(favoris.contains(property.getId()))
+                                {
+                                    property.setFavorite(true);
+                                }
+                                // Récupérer les images du champ 'photo'
+                                Log.d("liste profav", String.valueOf(property.isFavorite()));
+                                List<String> photoArray = (List<String>) document.get("photo");
+                                property.setPhoto(photoArray);
                                 propertyList.add(property);
                             }
                             propertyAdapter.filterList("");
@@ -87,3 +108,5 @@ public class liste_propriete extends AppCompatActivity {
                 });
     }
 }
+
+

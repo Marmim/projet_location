@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Type de logement:"
-            android:textColor="@color/move"
+            android:textColor="@color/move2"
             android:textSize="16sp"/>
         <Spinner
             android:id="@+id/Type"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:text="Ville:"
-                        android:textColor="@color/move"
+                        android:textColor="@color/move2"
                         android:textSize="16sp"
 
                         />
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Quartier:"
-                        android:textColor="@color/move"
+                        android:textColor="@color/move2"
                         android:textSize="16sp" />
 
                     <Spinner
@@ -169,7 +169,7 @@
                     android:layout_marginLeft="7dp"
                     android:layout_marginTop="1dp"
                     android:text="Prix:"
-                    android:textColor="@color/move"
+                    android:textColor="@color/move2"
                     android:textSize="16sp"
 
                     />

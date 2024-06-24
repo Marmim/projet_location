@@ -4,38 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!-- CardView -->
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
         android:layout_margin="5dp"
         app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <!-- LinearLayout Horizontal -->
+
+
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- ImageView -->
+            android:layout_height="wrap_content">
 
 
-            <!-- LinearLayout Vertical -->
             <ImageView
+                android:layout_margin="10dp"
                 android:id="@+id/image"
                 android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:layout_margin="10dp" />
+                android:layout_height="150dp"/>
+
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <!-- TextView Type -->
+
                 <TextView
                     android:id="@+id/tvType"
                     android:layout_width="match_parent"
@@ -46,7 +45,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <!-- TextView Tarif -->
+
                 <TextView
                     android:id="@+id/tvTarif"
                     android:layout_width="match_parent"
@@ -55,50 +54,38 @@
                     android:text="tarif"
                     android:textStyle="bold" />
 
-                <!-- LinearLayout Horizontal -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- TextView Ville -->
-                    <TextView
-                        android:id="@+id/tvVille"
-                        android:layout_width="104dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:text="Ville" />
 
-                    <!-- TextView Quartier -->
                     <TextView
                         android:id="@+id/tvQuartier"
-                        android:layout_width="85dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
                         android:layout_weight="1"
                         android:text="Quartier" />
+
+
+                    <TextView
+                        android:id="@+id/tvDisponibilite"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Disponibilité" />
+
                 </LinearLayout>
-
-                <!-- TextView Disponibilite -->
-                <TextView
-                    android:id="@+id/tvDisponibilite"
-                    android:layout_width="85dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:text="Disponibile" />
-
             </LinearLayout>
 
-            <!-- ImageView Heart -->
-            <ImageView
-                android:id="@+id/imageHeart"
+            <ImageButton
+                android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@drawable/baseline_favorite_24" />
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_delete" />
+
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -39,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         passwordedit=findViewById(R.id.passwordEditText);
         connexion = findViewById(R.id.loginButton);
         inscription = findViewById(R.id.signupButton);
+
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            Intent intent = new Intent(getApplicationContext(),QuiEtes.class);
+            startActivity(intent);
+            finish();
+        }
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

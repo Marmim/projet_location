@@ -29,8 +29,9 @@ public class ConversationsAdapter extends RecyclerView.Adapter<ConversationsAdap
     @Override
     public ConversationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_conversation, parent, false);
-        return new ConversationViewHolder(view);
+        return new ConversationViewHolder(view, listener);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull ConversationViewHolder holder, int position) {
@@ -46,11 +47,12 @@ public class ConversationsAdapter extends RecyclerView.Adapter<ConversationsAdap
     class ConversationViewHolder extends RecyclerView.ViewHolder {
         TextView textViewConversationName;
 
-        ConversationViewHolder(View itemView) {
+        ConversationViewHolder(View itemView, OnConversationClickListener listener) {
             super(itemView);
             textViewConversationName = itemView.findViewById(R.id.text_view_conversation_name);
             itemView.setOnClickListener(v -> listener.onConversationClick(conversations.get(getAdapterPosition())));
         }
+
 
         void bind(Conversation conversation) {
             textViewConversationName.setText(conversation.getName());
