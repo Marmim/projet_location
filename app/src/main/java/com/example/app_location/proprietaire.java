@@ -1,6 +1,7 @@
 package com.example.app_location;
 
 import static android.content.ContentValues.TAG;
+import static com.example.app_location.NotificationHelper.sendNotification;
 
 import android.content.ClipData;
 import android.content.Intent;
@@ -18,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
-
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -38,6 +41,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,17 +52,24 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class proprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     private EditText photos, description, contacte, tarif;
     private Button LancerButton, backButton, BSelectImage;
-
     private ImageButton previous, next;
     ImageSwitcher IVPreviewImage;
 
-    // One Preview Imageprivate final int MENU_PROFIL = R.id.profilmenu;
     private Spinner Ville_spinner, Type, Quartier_spinner;
+
     int SELECT_PICTURE = 200;
     private Uri selectedImageUri;
     ArrayList<Uri> mArrayUri;
@@ -296,13 +309,7 @@ public class proprietaire extends AppCompatActivity {
         });
     }
 
-
-
-
-
 // save data in firestore
-
-    // save data in firestore
 
     private void saveDataToFirestore() {
         // Ensure that at least one image has been selected
@@ -359,6 +366,7 @@ public class proprietaire extends AppCompatActivity {
                                     .add(userData)
                                     .addOnSuccessListener(documentReference -> {
                                         Toast.makeText(proprietaire.this, "Votre propriété est publiée", Toast.LENGTH_SHORT).show();
+                                        sendNotification("Nouvelle publication", "Votre propriété a été ajoutée avec succès.");
                                         Intent intent = new Intent(proprietaire.this, liste_propriete.class);
                                         startActivity(intent);
                                     })
@@ -372,37 +380,108 @@ public class proprietaire extends AppCompatActivity {
 
 
 
+                              /*  // selectionner l image dans le gallerie
+                                void imageChooser () {
+
+                                    // create an instance of the
+                                    // intent of the type image
+                                    Intent i = new Intent();
+                                    i.setType("image/*");
+                                    i.setAction(Intent.ACTION_GET_CONTENT);
+
+                                    // pass the constant to compare it
+                                    // with the returned requestCode
+                                    startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+                                }*/
+
+    // this function is triggered when user
+// selects the image from the imageChooser
+  /*  @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == SELECT_PICTURE) {
+            selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                IVPreviewImage.setImageURI(selectedImageUri);
+            }
+
+        }
+
+    }*/
+    private void sendNotification(String title, String message) {
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://fcm.googleapis.com/fcm/send";
+        JSONObject json = new JSONObject();
+        try {
+            json.put("to", "/topics/all_notifications");
+            JSONObject notification = new JSONObject();
+            notification.put("title", title);
+            notification.put("body", message);
+            json.put("notification", notification);
+            JSONObject data = new JSONObject();
+            data.put("message", message);
+            json.put("data", data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
+        Request request = new Request.Builder()
+                .header("Authorization", "AIzaSyDHynPsigaOqir66zhLd102X2ugoZdZFEU") // Remplacez YOUR_SERVER_KEY par votre clé d'API
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "Failed to send notification", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d(TAG, "Notification sent successfully");
+            }
+        });
+    }
+
+
+
 
 
 
     // this function is triggered when user
 // selects the image from the imageChooser
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // When an Image is picked
-        if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && null != data) {
-            // Get the Image from data
-            if (data.getClipData() != null) {
-                ClipData mClipData = data.getClipData();
-                int cout = data.getClipData().getItemCount();
-                for (int i = 0; i < cout; i++) {
-                    // adding imageuri in array
-                    Uri imageurl = data.getClipData().getItemAt(i).getUri();
-                    mArrayUri.add(imageurl);
-                }
-                // setting 1st selected image into image switcher
-                IVPreviewImage.setImageURI(mArrayUri.get(0));
-                position = 0;
-            } else {
-                Uri imageurl = data.getData();
-                mArrayUri.add(imageurl);
-                IVPreviewImage.setImageURI(mArrayUri.get(0));
-                position = 0;
-            }
-        } else {
-            // show this if no image is selected
-            Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
-        }
-    }
-}
+                        @Override
+                        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+                            super.onActivityResult(requestCode, resultCode, data);
+                            // When an Image is picked
+                            if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && null != data) {
+                                // Get the Image from data
+                                if (data.getClipData() != null) {
+                                    ClipData mClipData = data.getClipData();
+                                    int cout = data.getClipData().getItemCount();
+                                    for (int i = 0; i < cout; i++) {
+                                        // adding imageuri in array
+                                        Uri imageurl = data.getClipData().getItemAt(i).getUri();
+                                        mArrayUri.add(imageurl);
+                                    }
+                                    // setting 1st selected image into image switcher
+                                    IVPreviewImage.setImageURI(mArrayUri.get(0));
+                                    position = 0;
+                                } else {
+                                    Uri imageurl = data.getData();
+                                    mArrayUri.add(imageurl);
+                                    IVPreviewImage.setImageURI(mArrayUri.get(0));
+                                    position = 0;
+                                }
+                            } else {
+                                // show this if no image is selected
+                                Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+
+
+

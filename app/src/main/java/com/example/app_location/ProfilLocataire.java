@@ -1,5 +1,6 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,28 +9,35 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ProfilLocataire extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
+    private EditText info , pay , notifs , fav , logout ;
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profil_locataire);
 
+
         bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
+        pay = findViewById(R.id.editTextText6);
+        notifs = findViewById(R.id.editTextText7);
+        fav = findViewById(R.id.editTextText8);
+        logout = findViewById(R.id.editTextText9);
+        info = findViewById(R.id.editTextText5);
 
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -118,5 +126,35 @@ public class ProfilLocataire extends AppCompatActivity {
             }
             return false;
         });
+
+        notifs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, notification.class);
+                startActivity(intent);
+            }
+        });
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, fav.class);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, info_perso.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

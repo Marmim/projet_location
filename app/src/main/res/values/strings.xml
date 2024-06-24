@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LeaseEase</string>
+    <string name="map_view_content_description">Map showing location</string>
 </resources>

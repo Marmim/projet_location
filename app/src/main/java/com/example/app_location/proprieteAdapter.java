@@ -16,6 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,15 +28,18 @@ import java.util.Set;
 
 public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.PropertyViewHolder> {
 
+
     private List<Property> propertyList;
     private List<Property> filteredPropertyList;
     private Context context;
+    private FirebaseFirestore db;
 
 
     public proprieteAdapter(List<Property> propertyList, Context context) {
         this.propertyList = propertyList;
         this.filteredPropertyList = new ArrayList<>(propertyList);
         this.context = context;
+        this.db = FirebaseFirestore.getInstance();
     }
 
     @NonNull
@@ -58,6 +65,14 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             String firstImageUrl = property.getPhoto().get(0);
             // Utilisez une bibliothèque d'image comme Glide ou Picasso pour charger l'image
             Glide.with(context).load(firstImageUrl).into(holder.photo);
+            String imageUrl = property.getPhoto().get(0); // Première URL de la liste
+            Log.d("PropertyAdapter", "Loading image URL: " + imageUrl); // Ajout de log pour vérifier l'URL
+            Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.photo);
+        } else {
+            Log.d("PropertyAdapter", "No photo available for this property.");
+            holder.photo.setImageResource(R.drawable.aprt); // Placeholder si aucune image
         }
 
         if (property.isFavorite()) {
@@ -70,9 +85,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailsPropriete.class);
-                Bundle b = new Bundle();
-                b.putString("propertyId", property.getId());
-                intent.putExtras(b);
+                intent.putExtra("propertyId", property.getId());
                 context.startActivity(intent);
             }
         });
@@ -82,7 +95,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             public void onClick(View v) {
 
                 FavorisDB favdb = new FavorisDB(v.getContext());
-                if(property.isFavorite())
+                if (property.isFavorite())
                     favdb.removeFavoris(property.getId());
                 else
                     favdb.addFavoris(property.getId());
@@ -91,10 +104,6 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             }
         });
     }
-
-
-
-
 
 
     @Override
@@ -114,7 +123,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
                         property.getVille().toLowerCase().contains(text.toLowerCase()) ||
                         property.getQuartier().toLowerCase().contains(text.toLowerCase()) ||
 
-                property.getTarif().toLowerCase().contains(text.toLowerCase())) {
+                        property.getTarif().toLowerCase().contains(text.toLowerCase())) {
                     uniqueProperties.add(property);
                 }
             }
@@ -123,7 +132,26 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         notifyDataSetChanged();
     }
 
+/*    private void toggleFavoriteStatus(Property property) {
+        DocumentReference propertyRef = db.collection("Property").document(property.getId());
+        boolean newFavoriteStatus = !property.isFavorite(); // Inverse le statut favori actuel
+        Log.d("toggleFavoriteStatus", "Mise à jour du favori pour la propriété: " + property.getId() + " à " + newFavoriteStatus);
 
+        propertyRef.update("favorite", newFavoriteStatus)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            property.setFavorite(newFavoriteStatus);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Favori mis à jour", Toast.LENGTH_SHORT).show();
+                            Log.d("Firestore", "Favori mis à jour avec succès pour la propriété: " + property.getId());
+                        } else {
+                            Log.d("Firestore", "Erreur lors de la mise à jour du favori pour la propriété: " + property.getId(), task.getException());
+                        }
+                    }
+                });
+    }*/
 
     private void toggleFavoriteStatus(Property property) {
 
@@ -138,10 +166,12 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
 
 
 
+
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
 
         TextView type, quartier, ville, tarif,disponibilite;
         ImageView photo,imageHeart;
+
 
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -152,7 +182,6 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             photo = itemView.findViewById(R.id.image);
             disponibilite=itemView.findViewById(R.id.tvDisponibilite);
             imageHeart = itemView.findViewById(R.id.imageHeart);
-
         }
 
 

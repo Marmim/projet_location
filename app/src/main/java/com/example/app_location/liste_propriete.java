@@ -1,9 +1,7 @@
 package com.example.app_location;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -49,7 +47,7 @@ public class liste_propriete extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         propertyList = new ArrayList<>();
         FavorisDB favdb = new FavorisDB(this);
-        favoris=favdb.readFavoris();
+        favoris = favdb.readFavoris();
         /*for(String f:favoris)
             Log.d("liste profav", String.valueOf(favoris.contains("6YUyTmePE1Ue4D0zgUXD")));*/
 
@@ -57,8 +55,6 @@ public class liste_propriete extends AppCompatActivity {
         recyclerView.setAdapter(propertyAdapter);
 
         getPropertyListFromFirestore();
-
-
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -88,10 +84,8 @@ public class liste_propriete extends AppCompatActivity {
                             for (DocumentSnapshot document : task.getResult()) {
                                 Property property = document.toObject(Property.class);
                                 assert property != null;
-
                                 property.setId(document.getId());
-                                if(favoris.contains(property.getId()))
-                                {
+                                if (favoris.contains(property.getId())) {
                                     property.setFavorite(true);
                                 }
                                 // Récupérer les images du champ 'photo'
@@ -99,6 +93,10 @@ public class liste_propriete extends AppCompatActivity {
                                 List<String> photoArray = (List<String>) document.get("photo");
                                 property.setPhoto(photoArray);
                                 propertyList.add(property);
+                                if (property != null) {
+                                    property.setId(document.getId());
+                                    propertyList.add(property);
+                                }
                             }
                             propertyAdapter.filterList("");
                         } else {
@@ -108,5 +106,3 @@ public class liste_propriete extends AppCompatActivity {
                 });
     }
 }
-
-

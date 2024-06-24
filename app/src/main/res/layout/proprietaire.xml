@@ -25,6 +25,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -298,7 +308,7 @@
         </LinearLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"
         android:layout_width="match_parent"
@@ -310,11 +320,7 @@
         tools:layout_editor_absoluteY="619dp"
         app:itemIconTint="@color/black"
         app:labelVisibilityMode="labeled"/>
+
 </LinearLayout>
-
-
-
-
-
 
 

@@ -1,29 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".DetailsPropriete">
-    <Button
-        android:id="@+id/LouerButton"
+    <Button android:id="@+id/LouerButton"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:backgroundTint="@color/orange"
         android:text="Louer"
         android:textStyle="bold"
         android:layout_below="@id/descriptionTextView"/>
-
     <ImageSwitcher
         android:id="@+id/photoImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-      />
+        android:layout_alignParentTop="true"/>
     <ImageButton
         android:id="@+id/next"
         android:layout_width="50dp"
@@ -31,9 +27,7 @@
         android:layout_marginLeft="290dp"
         android:layout_marginTop="200dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/baseline_keyboard_arrow_right_24" />
-
-    />
+        android:src="@drawable/baseline_keyboard_arrow_right_24"/>
     <ImageButton
         android:id="@+id/previous"
         android:layout_width="50dp"
@@ -41,31 +35,27 @@
         android:layout_marginTop="200dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/baseline_keyboard_arrow_left_24"
-        android:background="@android:color/transparent"
-        />
-
+        android:background="@android:color/transparent"/>
     <TextView
         android:id="@+id/contactTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:layout_below="@id/photoImageView"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <TextView
         android:id="@+id/quartierTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/villeTextView"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
         android:id="@+id/villeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contactTextView"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
         android:id="@+id/tarifTextView"
         android:layout_width="match_parent"
@@ -73,15 +63,20 @@
         android:layout_below="@id/quartierTextView"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
         android:id="@+id/descriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tarifTextView"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/LouerButton"
+        android:contentDescription="@string/map_view_content_description" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"
         android:layout_width="match_parent"
@@ -90,5 +85,4 @@
         app:menu="@menu/bottom_menu"
         app:itemIconTint="@color/black"
         app:labelVisibilityMode="labeled"/>
-
 </RelativeLayout>

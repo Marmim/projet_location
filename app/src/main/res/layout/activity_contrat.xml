@@ -53,14 +53,19 @@
             android:layout_marginBottom="25dp"
             android:text="veuillez télécharger le contrat ci-dessous et le remplir soigneusement"
             android:textSize="17dp" />
-
+        <EditText
+            android:id="@+id/btn_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="https://www.papernest.com/wp-content/uploads/sites/23/2020/06/contrat-de-location-non-meuble-2020-pdf.pdf" />
         <Button
-            android:id="@+id/ContratButton"
+            android:id="@+id/btn_download_pdf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:backgroundTint="@color/orange"
-            android:text="Voir contrat" />
+            android:text="Télécharger contrat" />
+
 
         <TextView
             android:id="@+id/textView7"
@@ -70,17 +75,19 @@
             android:text="veuillez rendre le contrat rempli ainsi que votre signature scannée"
             android:textSize="17dp" />
 
-        <EditText
+
+        <Button
             android:id="@+id/contrat"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/background_edittext"
-            android:drawableRight="@drawable/baseline_add_24"
-            android:hint="Contrat et signature"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="@color/move"
+            android:drawableLeft="@drawable/add_photo_icon"
+            android:text="Rendre contrat rempli"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
         <Button
             android:layout_marginTop="10dp"

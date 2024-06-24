@@ -15,11 +15,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import com.google.firebase.firestore.QuerySnapshot;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class fav extends AppCompatActivity {
-
     private RecyclerView recyclerView;
     private proprieteAdapter propertyAdapter;
     private List<Property> favoriteProperties;
@@ -70,6 +72,16 @@ public class fav extends AppCompatActivity {
                     });
         }
 
+
+        favoriteProperties = new ArrayList<>();
+
+        db = FirebaseFirestore.getInstance();
+        propertyAdapter = new proprieteAdapter(favoriteProperties, this);
+        recyclerView.setAdapter(propertyAdapter);
+
+        loadFavoritePropertiesFromFirestore();
+
+
         bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -98,4 +110,30 @@ public class fav extends AppCompatActivity {
             return false;
         });
     }
+
+    private void loadFavoritePropertiesFromFirestore() {
+        db.collection("Property")
+                .whereEqualTo("favorite", true)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            favoriteProperties.clear();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Property property = document.toObject(Property.class);
+                                if (property != null) {
+                                    property.setId(document.getId());
+                                    favoriteProperties.add(property);
+                                }
+                            }
+                            propertyAdapter.notifyDataSetChanged();
+                            Log.d("Firestore", "Nombre de propriétés favorites: " + favoriteProperties.size());
+                        } else {
+                            Log.w("Firestore", "Erreur lors de la récupération des favoris.", task.getException());
+                        }
+                    }
+                });
+    }
+
 }
