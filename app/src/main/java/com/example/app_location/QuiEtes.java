@@ -1,6 +1,7 @@
 package com.example.app_location;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,20 +23,24 @@ public class QuiEtes extends AppCompatActivity {
         // Récupérer les vues à partir du layout XML
         buttonPropr = findViewById(R.id.buttonPropr);
         buttonLoca = findViewById(R.id.buttonLoca);
-        buttonPropr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuiEtes.this, proprietaire.class);
-                startActivity(intent);
-            }
-        });
         buttonLoca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuiEtes.this, locataire.class);
+                intent.putExtra("role", "locataire");
                 startActivity(intent);
             }
         });
+
+        buttonPropr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuiEtes.this, proprietaire.class);
+                intent.putExtra("role", "proprietaire");
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

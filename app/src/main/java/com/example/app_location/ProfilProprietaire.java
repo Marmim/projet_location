@@ -1,45 +1,46 @@
 package com.example.app_location;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class ProfilProprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
-    private EditText info , notifs , fav , logout , pub , dash , listloc ,pay ;
-
-    @SuppressLint("WrongViewCast")
+    private TextView info, notifs, fav, logout, pub, dash, listloc, pay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
 
+
         setContentView(R.layout.activity_profil_proprietaire);
 
-        info = findViewById(R.id.info);
-        pay = findViewById(R.id.pay);
-        notifs = findViewById(R.id.notifs);
-        fav = findViewById(R.id.fav);
-        logout = findViewById(R.id.logout);
-        pub = findViewById(R.id.pub);
-        dash = findViewById(R.id.dash);
-        listloc = findViewById(R.id.listloc);
-
-
         bottomNavigationView = findViewById(R.id.bot_nav);
-
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
         backButton = findViewById(R.id.backButton);
+
+        info = findViewById(R.id.editTextText5);
+        pay = findViewById(R.id.editTextText6);
+        notifs = findViewById(R.id.editTextText7);
+        fav = findViewById(R.id.editTextText8);
+        pub = findViewById(R.id.editTextText9);
+        dash = findViewById(R.id.editTextText10);
+        listloc = findViewById(R.id.editTextText11);
+        logout = findViewById(R.id.editTextText12);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +51,51 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
         });
 
+        // se deriger vers info.person
+        TextView personalInfoTextView = findViewById(R.id.editTextText5);
+        personalInfoTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, info_perso.class);
+                Bundle b = new Bundle();
+                b.putString("role","proprietaire");
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
+
+        // Récupérer les informations de l'utilisateur à partir de Firestore et les afficher dans l'EditText
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        if (user != null) {
+            String email = user.getEmail();
+            db.collection("utilisateurs")
+                    .whereEqualTo("email", email)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String nom = document.getString("nom");
+                                String prenom = document.getString("prenom");
+                                String fullName = nom + " " + prenom;
+                                EditText editTextText3 = findViewById(R.id.editTextText3);
+                                editTextText3.setText(fullName);
+                            }
+                        } else {
+                            //lerreur
+                        }
+                    });
+        }
+
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
@@ -77,7 +119,6 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
             return false;
         });
-
         notifs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +126,7 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +134,7 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,19 +142,30 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         pub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this,proprietaire.class);
+                Intent intent = new Intent(ProfilProprietaire.this, proprietaire.class);
                 startActivity(intent);
             }
         });
+
         dash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this,tableau_bord.class);
+                Intent intent = new Intent(ProfilProprietaire.this, tableau_bord.class);
                 startActivity(intent);
             }
         });
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, info_perso.class);
+                startActivity(intent);
+            }
+         });
+
+
     }
 }

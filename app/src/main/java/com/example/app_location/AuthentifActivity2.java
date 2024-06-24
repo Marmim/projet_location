@@ -63,10 +63,16 @@ public class AuthentifActivity2 extends AppCompatActivity {
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("nom", nom);
                                 user.put("prenom", prenom);
+                                user.put("email", email);
+                                user.put("password", password);
 
                                 DocumentReference docRef = db.collection("utilisateurs").document(email);
                                 docRef.set(user);
-                                Intent intent = new Intent(getApplicationContext(),QuiEtes.class);
+
+                                // Envoyer une notification de création de compte
+                                NotificationHelper.sendNotification("Création de compte", "Votre compte a été créé avec succès.");
+
+                                Intent intent = new Intent(getApplicationContext(), QuiEtes.class);
                                 startActivity(intent);
                                 finish();
 
@@ -81,4 +87,7 @@ public class AuthentifActivity2 extends AppCompatActivity {
         });
 
     }
+
+
+
 }

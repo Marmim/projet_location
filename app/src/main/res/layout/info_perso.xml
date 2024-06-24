@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".info_perso">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back Button"
+        android:src="@drawable/baseline_chevron_left_24"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/namtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="Votre Prénom: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/fnamtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="54dp"
+        android:text="First Name"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/namtxt"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/prenomtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="Votre nom: "
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/fnamtxt" />
+
+    <TextView
+        android:id="@+id/emailtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="Email"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/lnametxt"
+        app:layout_constraintTop_toBottomOf="@+id/lnametxt" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="Votre Email :"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/prenomtxt"
+        app:layout_constraintTop_toBottomOf="@+id/prenomtxt" />
+
+    <TextView
+        android:id="@+id/lnametxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:text="Last Name"
+        app:layout_constraintStart_toStartOf="@+id/fnamtxt"
+        app:layout_constraintTop_toBottomOf="@+id/fnamtxt" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Changer votre mot de passe :"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <EditText
+        android:id="@+id/oldPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ancien mot de passe"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/newPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nouveau mot de passe"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/oldPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/oldPasswordEditText"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirmer le mot de passe"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/newPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/newPasswordEditText"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/changePasswordButton"
+        android:layout_width="122dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Modifier"
+        app:layout_constraintStart_toStartOf="@+id/confirmPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditText" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/femalepro" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

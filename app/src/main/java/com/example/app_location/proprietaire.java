@@ -1,5 +1,7 @@
 package com.example.app_location;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,11 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,6 +33,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,16 +43,22 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class proprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
-    private EditText photos,description,contacte,tarif;
-    private Button LancerButton, AnnulerButton , BSelectImage;
+    private EditText photos, description, contacte, tarif;
+    private Button LancerButton, backButton, BSelectImage;
 
-    // One Preview Image
-    private ImageButton backButton ,imageViewSecondary,imageViewMain;
-    private final int MENU_PROFIL = R.id.profilmenu;
-    private Spinner Ville_spinner,Type,Quartier_spinner;
+    // One Preview Imageprivate final int MENU_PROFIL = R.id.profilmenu;
+    private Spinner Ville_spinner, Type, Quartier_spinner;
     private ImageView IVPreviewImage;
     int SELECT_PICTURE = 200;
     private Uri selectedImageUri;
@@ -67,14 +76,13 @@ public class proprietaire extends AppCompatActivity {
         setContentView(R.layout.proprietaire);
         bottomNavigationView = findViewById(R.id.bot_nav);
         LancerButton = findViewById(R.id.LancerButton);
-        AnnulerButton = findViewById(R.id.AnnulerButton);
         backButton = findViewById(R.id.backButton);
         description = findViewById(R.id.description);
         contacte = findViewById(R.id.contacte);
         tarif = findViewById(R.id.tarif);
-        Type=findViewById(R.id.Type);
+        Type = findViewById(R.id.Type);
         Ville_spinner = findViewById(R.id.Ville_spinner);
-        Quartier_spinner=findViewById(R.id.Quartier_spinner);
+        Quartier_spinner = findViewById(R.id.Quartier_spinner);
         BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
@@ -117,20 +125,18 @@ public class proprietaire extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
-            } else  if (itemId == R.id.favoris) {
+            } else if (itemId == R.id.favoris) {
                 Intent hometIntent = new Intent(getApplicationContext(), fav.class);
                 startActivity(hometIntent);
                 return true;
-            }
-            else if (itemId == R.id.notif) {
+            } else if (itemId == R.id.notif) {
                 Intent hometIntent = new Intent(getApplicationContext(), notification.class);
                 startActivity(hometIntent);
                 return true;
-            }
-            else if (itemId == R.id.profilmenu) {
+            } else if (itemId == R.id.profilmenu) {
                 Intent hometIntent = new Intent(getApplicationContext(), ProfilProprietaire.class);
                 startActivity(hometIntent);
                 return true;
@@ -145,24 +151,14 @@ public class proprietaire extends AppCompatActivity {
                 imageChooser();
             }
         });
-
-
-
 // quand je clique sur lancer les donnees saisi seront enregistré
         LancerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveDataToFirestore();
+            }
+        });
 
-            }
-        });
-        AnnulerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(proprietaire.this, tableau_bord.class);
-                startActivity(intent);
-            }
-        });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,7 +166,6 @@ public class proprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         db = FirebaseFirestore.getInstance();
@@ -223,13 +218,10 @@ public class proprietaire extends AppCompatActivity {
                 });
 
 
-
-
     }
 
     // get quartiers de chacun de ville
-    public void getQuartiers(String city)
-    {
+    public void getQuartiers(String city) {
         DocumentReference docRef = db.collection("Ville").document(city);
 
         // Fetch the document using get()
@@ -255,7 +247,7 @@ public class proprietaire extends AppCompatActivity {
         });
     }
 
-    // save data in firestore
+// save data in firestore
 
     private void saveDataToFirestore() {
         // Ensure that an image has been selected
@@ -304,6 +296,8 @@ public class proprietaire extends AppCompatActivity {
                             .addOnSuccessListener(documentReference -> {
                                 Toast.makeText(proprietaire.this, "Votre propriété est publiée", Toast.LENGTH_SHORT).show();
                                 // Rediriger vers la page suivante après l'enregistrement des données
+                                sendNotification("Nouvelle publication", "Votre propriété a été ajoutée avec succès.");
+
                                 Intent intent = new Intent(proprietaire.this, liste_propriete.class);
 
                                 startActivity(intent);
@@ -330,7 +324,7 @@ public class proprietaire extends AppCompatActivity {
     }
 
     // this function is triggered when user
-    // selects the image from the imageChooser
+// selects the image from the imageChooser
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -341,8 +335,43 @@ public class proprietaire extends AppCompatActivity {
                 IVPreviewImage.setImageURI(selectedImageUri);
             }
         }
+
     }
+    private void sendNotification(String title, String message) {
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://fcm.googleapis.com/fcm/send";
 
+        JSONObject json = new JSONObject();
+        try {
+            json.put("to", "/topics/all_notifications");
+            JSONObject notification = new JSONObject();
+            notification.put("title", title);
+            notification.put("body", message);
+            json.put("notification", notification);
+            JSONObject data = new JSONObject();
+            data.put("message", message);
+            json.put("data", data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
+        Request request = new Request.Builder()
+                .header("Authorization", "AIzaSyDHynPsigaOqir66zhLd102X2ugoZdZFEU") // Remplacez YOUR_SERVER_KEY par votre clé d'API
+                .url(url)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "Failed to send notification", e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d(TAG, "Notification sent successfully");
+            }
+        });
+    }
 }
-
-

@@ -1,58 +1,66 @@
 package com.example.app_location;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class notification extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+
+    private RecyclerView recyclerView;
+    private NotificationAdapter adapter;
+    private List<NotificationItem> notificationList;
+    private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notification);
 
-        bottomNavigationView = findViewById(R.id.bot_nav);
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        notificationList = new ArrayList<>();
+        adapter = new NotificationAdapter(notificationList);
+        recyclerView.setAdapter(adapter);
 
-        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), Maison.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
-                startActivity(hometIntent);
-                return true;
-            } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.profilmenu) {
-                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            return false;
-        });
+        db = FirebaseFirestore.getInstance();
 
+        fetchNotifications();
+    }
+
+    private void fetchNotifications() {
+        db.collection("notifications")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                NotificationItem notification = document.toObject(NotificationItem.class);
+                                notificationList.add(notification);
+                            }
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            Log.w("TAG", "Error getting documents.", task.getException());
+                            Toast.makeText(notification.this, "Error getting notifications.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
