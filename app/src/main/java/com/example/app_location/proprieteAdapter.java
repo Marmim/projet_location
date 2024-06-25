@@ -2,12 +2,10 @@ package com.example.app_location;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,9 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -33,6 +28,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
     private List<Property> filteredPropertyList;
     private Context context;
     private FirebaseFirestore db;
+
 
 
     public proprieteAdapter(List<Property> propertyList, Context context) {
@@ -61,6 +57,13 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         holder.quartier.setText(property.getQuartier());
         holder.disponibilite.setText(property.isPaid() ? "Non disponible" : "Disponible");
 
+        // Mettre à jour l'UI en fonction de la valeur de ispaid
+        if (property.isPaid()) {
+            holder.disponibilite.setText("Non Disponible");
+        } else {
+            holder.disponibilite.setText("Disponible");
+        }
+
         if (property.getPhoto() != null && !property.getPhoto().isEmpty()) {
             String firstImageUrl = property.getPhoto().get(0);
             // Utilisez une bibliothèque d'image comme Glide ou Picasso pour charger l'image
@@ -76,9 +79,11 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         }
 
         if (property.isFavorite()) {
-            holder.imageHeart.setImageResource(R.drawable.orangeheart); // Utiliser une icône de favori remplie
+            holder.imageHeart.setImageResource(R.drawable.orangeheart);
+          // Utiliser une icône de favori remplie
         } else {
             holder.imageHeart.setImageResource(R.drawable.baseline_favorite_24); // Utiliser une icône de favori non remplie
+
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -184,6 +189,7 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
             imageHeart = itemView.findViewById(R.id.imageHeart);
         }
 
-
     }
+
+
 }

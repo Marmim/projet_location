@@ -65,15 +65,7 @@ public class tableau_bord extends AppCompatActivity {
                     Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                     startActivity(hometIntent);
                     return true;
-                } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-                }
-                else if (itemId == R.id.notif) {
-                    Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                    startActivity(hometIntent);
-                    return true;
+
                 }
                 else if (itemId == R.id.profilmenu) {
                     Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);

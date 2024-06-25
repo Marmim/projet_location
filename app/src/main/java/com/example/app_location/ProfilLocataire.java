@@ -34,8 +34,6 @@ public class ProfilLocataire extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
         pay = findViewById(R.id.editTextText6);
-        notifs = findViewById(R.id.editTextText7);
-        fav = findViewById(R.id.editTextText8);
         logout = findViewById(R.id.editTextText9);
         info = findViewById(R.id.editTextText5);
 
@@ -111,14 +109,7 @@ public class ProfilLocataire extends AppCompatActivity {
                 Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
-            } else if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
+
             } else if (itemId == R.id.profilmenu) {
                 Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
                 startActivity(hometIntent);
@@ -127,20 +118,14 @@ public class ProfilLocataire extends AppCompatActivity {
             return false;
         });
 
-        notifs.setOnClickListener(new View.OnClickListener() {
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilLocataire.this, notification.class);
+                Intent intent = new Intent(ProfilLocataire.this, PayementActivity.class);
                 startActivity(intent);
             }
         });
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilLocataire.this, fav.class);
-                startActivity(intent);
-            }
-        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

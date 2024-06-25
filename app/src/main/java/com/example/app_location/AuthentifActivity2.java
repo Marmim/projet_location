@@ -2,6 +2,8 @@ package com.example.app_location;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,6 +26,8 @@ public class AuthentifActivity2 extends AppCompatActivity {
     private EditText emailtext, passwrd, confirmpasswrd, editNom, editPrenom;
     private Button loginButton;
     private FirebaseFirestore db; // Instance de Firestore
+    private static final String CHANNEL_ID = "my_channel_01";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class AuthentifActivity2 extends AppCompatActivity {
 
         // Initialiser Firestore
         db = FirebaseFirestore.getInstance();
+
 
         // Récupérer les vues à partir du layout XML
         emailtext = findViewById(R.id.emailtext);
@@ -70,7 +76,8 @@ public class AuthentifActivity2 extends AppCompatActivity {
                                 docRef.set(user);
 
                                 // Envoyer une notification de création de compte
-                                NotificationHelper.sendNotification("Création de compte", "Votre compte a été créé avec succès.");
+                              sendNotification("Création de compte", "Votre compte a été créé avec succès.");
+
 
                                 Intent intent = new Intent(getApplicationContext(), QuiEtes.class);
                                 startActivity(intent);
@@ -86,6 +93,16 @@ public class AuthentifActivity2 extends AppCompatActivity {
             }
         });
 
+    }
+    public  void sendNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.drawablelogo);
+        builder.setContentTitle(title);  // Utilise le titre passé en paramètre
+        builder.setContentText(message); // Utilise le message passé en paramètre
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
     }
 
 

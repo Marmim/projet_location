@@ -58,7 +58,7 @@ dependencies {
     //google map
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("com.google.android.gms:play-services-location:21.0.1")
-
+    implementation ("androidx.core:core:1.6.0")
     // Test libraries
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

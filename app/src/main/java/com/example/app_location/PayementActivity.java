@@ -7,13 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app_location.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,7 +29,7 @@ public class PayementActivity extends AppCompatActivity {
 
     private EditText contactEditText;
     private EditText cardNumberEditText;
-    private Button payButton;
+    private Button payButton , contrat;
     private FirebaseFirestore db;
     private ImageButton backButton;
     private String propertyId;
@@ -45,6 +44,16 @@ public class PayementActivity extends AppCompatActivity {
         cardNumberEditText = findViewById(R.id.edittext_card_number);
         payButton = findViewById(R.id.button_pay);
         backButton = findViewById(R.id.backButton);
+        contrat = findViewById(R.id.button_contrat);
+
+
+        contrat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PayementActivity.this, Contrat.class);
+                startActivity(intent);
+            }
+         });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,10 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.AutocompletePrediction;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
-import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -215,15 +211,7 @@ public class locataire  extends AppCompatActivity {
                 Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
-            } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
+
             }
             else if (itemId == R.id.profilmenu) {
                 Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);

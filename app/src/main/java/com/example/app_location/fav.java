@@ -94,14 +94,7 @@ public class fav extends AppCompatActivity {
                 Intent searchIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(searchIntent);
                 return true;
-            } else if (itemId == R.id.favoris) {
-                Intent favIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(favIntent);
-                return true;
-            } else if (itemId == R.id.notif) {
-                Intent notifIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(notifIntent);
-                return true;
+
             } else if (itemId == R.id.profilmenu) {
                 Intent profilIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
                 startActivity(profilIntent);

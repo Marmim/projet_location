@@ -12,15 +12,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.File;
 
 
 public class Contrat extends AppCompatActivity {
-
+    private BottomNavigationView bottomNavigationView;
     EditText urlField;
     Button downloadButton;
     Button renderContratButton;
-    Button confirmButton;
+    Button confirmButton , payment;
+
 
     private static final int PICK_PDF_REQUEST = 1;
     private String selectedFilePath;

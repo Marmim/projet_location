@@ -1,11 +1,9 @@
 package com.example.app_location;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,6 +31,7 @@ public class liste_propriete extends AppCompatActivity {
     private int position = 0;
     private static final int PICK_IMAGE_REQUEST = 1;
     List<String> favoris;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,28 @@ public class liste_propriete extends AppCompatActivity {
         recyclerView.setAdapter(propertyAdapter);
 
         getPropertyListFromFirestore();
+
+        bottomNavigationView = findViewById(R.id.bot_nav);
+        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
+                startActivity(hometIntent);
+                return true;
+            } else if (itemId == R.id.search) {
+                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
+                startActivity(hometIntent);
+                return true;
+
+            }
+            else if (itemId == R.id.profilmenu) {
+                Intent hometIntent = new Intent(getApplicationContext(), ProfilProprietaire.class);
+                startActivity(hometIntent);
+                return true;
+            }
+            return false;
+        });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

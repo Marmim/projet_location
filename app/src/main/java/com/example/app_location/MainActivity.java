@@ -3,8 +3,8 @@ package com.example.app_location;
 
 import static android.content.ContentValues.TAG;
 
-import static com.example.app_location.NotificationHelper.sendNotification;
-
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +15,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private String email,password;
     private FirebaseAuth mAuth;
     private Button inscription;
+    public static final String CHANNEL_ID = "my_channel_01";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    NotificationHelper.sendNotification("Nouvelle connexion", "Nous sommes heureux de vous revoir");
+                                    sendNotification("Nouvelle connexion", "Nous sommes heureux de vous revoir");
                                     Intent intent = new Intent(getApplicationContext(),QuiEtes.class);
                                     startActivity(intent);
                                     finish();
@@ -85,4 +89,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void sendNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.drawablelogo);
+        builder.setContentTitle("Nouvelle Connexion");
+        builder.setContentText("Nous sommes heureux de vous revoir.");
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);// Replace with your own icon
+// Changed to HIGH
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
+    }
+
 }

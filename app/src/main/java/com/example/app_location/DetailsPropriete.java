@@ -1,8 +1,6 @@
 package com.example.app_location;
 
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -30,24 +28,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-    @SuppressLint({"SetTextI18n", "MissingInflatedId"})
-
-
 public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCallback {
-    BottomNavigationView bottomNavigationView;
+
     private GoogleMap map;
     private MapView mapView;
-    private List<String> photos;
-    private ImageView imageViewProperty;
     private ImageSwitcher photoImageView;
     private TextView textViewDescription, textViewTarif, textViewVille, textViewQuartier, contactTextView;
     private Button louerButton;
@@ -56,10 +49,15 @@ public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCal
     private List<String> photoArray = new ArrayList<>();
     private int position = 0;
 
+    @SuppressLint({"SetTextI18n", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.propriete_details);
+
+        mapView = findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
 
         // Initialisation des vues
         photoImageView = findViewById(R.id.photoImageView);
@@ -72,17 +70,16 @@ public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCal
         next = findViewById(R.id.next);
         previous = findViewById(R.id.previous);
 
-        mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
-
-
         // Configuration du listener pour le bouton Louer
         louerButton.setOnClickListener(v -> {
             Intent intent = new Intent(DetailsPropriete.this, PayementActivity.class);
-            intent.putExtras(getIntent().getExtras()); // Pass propertyId to PayementActivity
+            intent.putExtras(getIntent().getExtras());
+            Bundle b = new Bundle();
+            b.putString("propertyId", propertyId);
+            intent.putExtras(b);
+            intent.putExtra("montant", textViewTarif.getText().toString()); // Pass propertyId to PayementActivity
             startActivity(intent);
-        });
+});
 
         next.setOnClickListener(v -> {
             if (position < photoArray.size() - 1) {
@@ -176,87 +173,6 @@ public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCal
         if (!photoArray.isEmpty() && position < photoArray.size()) {
             Glide.with(getApplicationContext()).load(photoArray.get(position)).into((ImageView) photoImageView.getCurrentView());
         }
-        bottomNavigationView = findViewById(R.id.bot_nav);
-
-        bottomNavigationView.setSelectedItemId(R.id.profilmenu);
-
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.profilmenu) {
-                Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            return false;
-        });
-
-        String id = getIntent().getStringExtra("propertyId");
-        photos = getIntent().getStringArrayListExtra("propertyPhotos");
-
-        if (photos != null && !photos.isEmpty()) {
-            for (String photoUrl : photos) {
-                Log.d("DetailsPropriete", "Received photo URL: " + photoUrl);
-            }
-            String firstPhotoUrl = photos.get(0); // Utiliser la première photo
-            Log.d("DetailsPropriete", "Loading image URL: " + firstPhotoUrl);
-            Glide.with(getApplicationContext()).load(firstPhotoUrl).into(imageViewProperty);
-        } else {
-            Log.d("DetailsPropriete", "No photos available from intent.");
-            imageViewProperty.setImageResource(R.drawable.aprt);
-        }
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("Property").document(id);
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("Document", "DocumentSnapshot data: " + document.getData());
-
-                        // Récupération des données de Firestore
-                        String description = document.getString("description");
-                        String tarif = document.getString("tarif");
-                        String ville = document.getString("ville");
-                        String quartier = document.getString("quartier");
-                        String contacte = document.getString("contact");
-
-                        // Affichage des données dans les vues
-                        textViewDescription.setText(description);
-                        textViewTarif.setText(tarif + " DH /mois");
-                        textViewVille.setText(ville);
-                        textViewQuartier.setText(quartier);
-                        contactTextView.setText("Contactez-nous : " + contacte);
-
-                        // Mise à jour de la carte avec la localisation de la propriété
-                        updateMapLocation(ville, quartier);
-                    } else {
-                        Log.d("Document", "No such document");
-                    }
-                } else {
-                    Log.d("Document", "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
     @Override

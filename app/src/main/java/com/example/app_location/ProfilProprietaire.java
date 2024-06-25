@@ -1,6 +1,5 @@
 package com.example.app_location;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 public class ProfilProprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
-    private TextView info, notifs, fav, logout, pub, dash, listloc, pay;
+    private TextView info, logout, pub,  listloc, pay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +35,7 @@ public class ProfilProprietaire extends AppCompatActivity {
 
         info = findViewById(R.id.editTextText5);
         pay = findViewById(R.id.editTextText6);
-        notifs = findViewById(R.id.editTextText7);
-        fav = findViewById(R.id.editTextText8);
         pub = findViewById(R.id.editTextText9);
-        dash = findViewById(R.id.editTextText10);
         logout = findViewById(R.id.editTextText12);
 
 
@@ -74,7 +70,6 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
         });
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         TextView listeProprieteTextView = findViewById(R.id.listePropText1);
         listeProprieteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,16 +114,7 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(hometIntent);
                 return true;
             } else if (itemId == R.id.search) {
-                Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
-                startActivity(hometIntent);
-                return true;
-            } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
+                Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
             }
@@ -139,29 +125,8 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
             return false;
         });
-        notifs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, notification.class);
-                startActivity(intent);
-            }
-        });
 
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, fav.class);
-                startActivity(intent);
-            }
-        });
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         pub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,14 +135,14 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        dash.setOnClickListener(new View.OnClickListener() {
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, tableau_bord.class);
+                Intent intent = new Intent(ProfilProprietaire.this, PayementActivity.class);
                 startActivity(intent);
             }
         });
+
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,6 +151,12 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
          });
 
-
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,7 +47,7 @@ public class MyproprieteAdpter extends RecyclerView.Adapter<MyproprieteAdpter.Pr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Property property = filteredPropertyList.get(position);
 
         holder.type.setText(property.getType());

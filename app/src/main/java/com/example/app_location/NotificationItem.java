@@ -2,30 +2,18 @@ package com.example.app_location;
 
 public class NotificationItem {
     private String title;
-    private String body;
+    private String message;
 
-    public NotificationItem() {
-        // Default constructor required for calls to DataSnapshot.getValue(NotificationItem.class)
-    }
-
-    public NotificationItem(String title, String body) {
+    public NotificationItem(String title, String message) {
         this.title = title;
-        this.body = body;
+        this.message = message;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
+    public String getMessage() {
+        return message;
     }
 }
