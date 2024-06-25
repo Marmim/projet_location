@@ -39,7 +39,6 @@ import java.util.Locale;
 
 public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCallback {
 
-
     private GoogleMap map;
     private MapView mapView;
     private ImageSwitcher photoImageView;
@@ -80,7 +79,7 @@ public class DetailsPropriete extends AppCompatActivity implements OnMapReadyCal
             intent.putExtras(b);
             intent.putExtra("montant", textViewTarif.getText().toString()); // Pass propertyId to PayementActivity
             startActivity(intent);
-        });
+});
 
         next.setOnClickListener(v -> {
             if (position < photoArray.size() - 1) {

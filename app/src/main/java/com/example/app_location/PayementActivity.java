@@ -7,13 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app_location.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,8 +27,9 @@ import java.util.Map;
 
 public class PayementActivity extends AppCompatActivity {
 
-    private EditText cardNumberEditText, edittext_amount, edittext_date, edittext_crypto, contactEditText;
-    private Button payButton;
+    private EditText contactEditText;
+    private EditText cardNumberEditText;
+    private Button payButton , contrat;
     private FirebaseFirestore db;
     private ImageButton backButton;
     private String propertyId;
@@ -44,9 +44,16 @@ public class PayementActivity extends AppCompatActivity {
         cardNumberEditText = findViewById(R.id.edittext_card_number);
         payButton = findViewById(R.id.button_pay);
         backButton = findViewById(R.id.backButton);
-        edittext_crypto = findViewById(R.id.edittext_crypto);
-        edittext_date = findViewById(R.id.edittext_date);
+        contrat = findViewById(R.id.button_contrat);
 
+
+        contrat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PayementActivity.this, Contrat.class);
+                startActivity(intent);
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +68,6 @@ public class PayementActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("propertyId")) {
             propertyId = extras.getString("propertyId");
-            String montant = extras.getString("montant");
-            montant = montant.replaceAll(" DH / mois", "");
-            edittext_amount.setText(montant);
-            edittext_amount.setEnabled(true);
         }
 
         db = FirebaseFirestore.getInstance();
@@ -84,8 +87,6 @@ public class PayementActivity extends AppCompatActivity {
 
                             String contact = contactEditText.getText().toString();
                             String cardNumber = cardNumberEditText.getText().toString();
-                            String dateEx = edittext_date.getText().toString();
-                            String crypto = edittext_crypto.getText().toString();
 
                             if (contact.isEmpty() || cardNumber.isEmpty()) {
                                 Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
@@ -113,8 +114,6 @@ public class PayementActivity extends AppCompatActivity {
                             payment.put("amount", amount[0]);
                             payment.put("card_number", cardNumber);
                             payment.put("proId", pid);
-                            payment.put("crypto", crypto);
-                            payment.put("dateExpi", dateEx);
 
 
                             // Ajouter les données à la collection "payments" dans Firestore

@@ -1,9 +1,8 @@
 package com.example.app_location;
 
-import static android.content.ContentValues.TAG;
-import static com.example.app_location.NotificationHelper.sendNotification;
-
+import android.app.NotificationManager;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,14 +18,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,9 +39,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,17 +47,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
 public class proprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-
+    private static final String CHANNEL_ID = "my_channel_01";
     private EditText photos, description, contacte, tarif;
     private Button LancerButton, backButton, BSelectImage;
     private ImageButton previous, next;
@@ -401,42 +388,8 @@ public class proprietaire extends AppCompatActivity {
         }
 
     }*/
-    private void sendNotification(String title, String message) {
-        OkHttpClient client = new OkHttpClient();
-        String url = "https://fcm.googleapis.com/fcm/send";
-        JSONObject json = new JSONObject();
-        try {
-            json.put("to", "/topics/all_notifications");
-            JSONObject notification = new JSONObject();
-            notification.put("title", title);
-            notification.put("body", message);
-            json.put("notification", notification);
-            JSONObject data = new JSONObject();
-            data.put("message", message);
-            json.put("data", data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json; charset=utf-8"));
-        Request request = new Request.Builder()
-                .header("Authorization", "AIzaSyDHynPsigaOqir66zhLd102X2ugoZdZFEU") // Remplacez YOUR_SERVER_KEY par votre clé d'API
-                .url(url)
-                .post(body)
-                .build();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "Failed to send notification", e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, "Notification sent successfully");
-            }
-        });
-    }
 
 
 
@@ -473,7 +426,20 @@ public class proprietaire extends AppCompatActivity {
                                 Toast.makeText(this, "You haven't picked Image", Toast.LENGTH_LONG).show();
                             }
                         }
-                    }
+
+    private void sendNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.drawablelogo);
+        builder.setContentTitle(title);  // Utilise le titre passé en paramètre
+        builder.setContentText(message); // Utilise le message passé en paramètre
+        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
+    }
+}
+
+
 
 
 

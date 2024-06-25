@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".DetailsPropriete">
+
     <Button android:id="@+id/LouerButton"
         android:layout_width="120dp"
         android:layout_height="50dp"
@@ -15,8 +16,10 @@
         android:layout_below="@id/descriptionTextView"/>
     <ImageSwitcher
         android:id="@+id/photoImageView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="380dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="300dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:layout_alignParentTop="true"/>
@@ -41,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/photoImageView"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
 
@@ -48,12 +52,14 @@
         android:id="@+id/quartierTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/villeTextView"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
         android:id="@+id/villeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/contactTextView"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
@@ -62,21 +68,27 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/quartierTextView"
         android:textStyle="bold"
+        android:layout_marginLeft="20dp"
         android:textSize="18dp"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
     <TextView
         android:id="@+id/descriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/tarifTextView"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:layout_below="@id/LouerButton"
         android:contentDescription="@string/map_view_content_description" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bot_nav"
         android:layout_width="match_parent"

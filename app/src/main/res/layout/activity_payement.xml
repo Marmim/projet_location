@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,21 +15,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"/>
-
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:src="@drawable/diversite"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/backButton"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"/>
-
     <TextView
         android:id="@+id/textPayement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payez En ligne"
+        android:text="Payement En ligne"
         android:textColor="@color/orange"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -44,12 +41,12 @@
         android:id="@+id/text_contact_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Nom sur la carte:"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textPayement"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/edittext_contact"
@@ -57,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/edittext_payement"
-        android:hint="Nom sur la carte"
+        android:hint="Votre Nom sur carte"
         android:padding="10dp"
         android:textColor="@android:color/black"
         android:textSize="16sp"
@@ -74,8 +71,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/edittext_contact"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="4dp"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/edittext_amount"
@@ -100,8 +96,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/edittext_amount"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="4dp"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
         android:id="@+id/edittext_card_number"
@@ -117,69 +112,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_card_number_label"/>
 
-    <TextView
-        android:id="@+id/date_label"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Date d'expiration (MM/AA):"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/edittext_card_number"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="4dp"/>
-
-    <EditText
-        android:id="@+id/edittext_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="MM/AA"
-        android:background="@drawable/edittext_payement"
-        android:padding="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        app:itemIconTint="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/date_label"/>
-
-    <TextView
-        android:id="@+id/crypto_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Cryptogramme visuel:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/edittext_date"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="4dp"/>
-
-    <EditText
-        android:id="@+id/edittext_crypto"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="..."
-        android:background="@drawable/edittext_payement"
-        android:padding="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/crypto_label"/>
+        app:menu="@menu/bottom_menu"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_pay"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="@color/orange"
         android:drawableLeft="@drawable/baseline_attach_money_24"
         android:text="Payer"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_crypto"/>
+        app:layout_constraintTop_toBottomOf="@id/edittext_card_number" />
 
+    <Button
+        android:id="@+id/button_contrat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:backgroundTint="@color/orange"
+        android:drawableLeft="@drawable/baseline_attach_money_24"
+        android:text="Voir contrat"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_card_number" />
 </androidx.constraintlayout.widget.ConstraintLayout>

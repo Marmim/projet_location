@@ -1,6 +1,5 @@
 package com.example.app_location;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 public class ProfilProprietaire extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
-    private TextView info, notifs, fav, logout, pub, dash, listloc, pay;
+    private TextView info, logout, pub,  listloc, pay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +131,13 @@ public class ProfilProprietaire extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, PayementActivity.class);
+                startActivity(intent);
+            }
+        });
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +147,12 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
          });
 
-
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

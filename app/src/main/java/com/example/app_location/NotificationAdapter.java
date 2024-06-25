@@ -21,16 +21,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.notification_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        NotificationItem notification = notificationList.get(position);
-        holder.notificationTitle.setText(notification.getTitle());
-        holder.notificationBody.setText(notification.getBody());
+        NotificationItem item = notificationList.get(position);
+        holder.titleTextView.setText(item.getTitle());
+        holder.messageTextView.setText(item.getMessage());
     }
 
     @Override
@@ -38,14 +37,15 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return notificationList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView notificationTitle;
-        public TextView notificationBody;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView;
+        TextView messageTextView;
 
-        public ViewHolder(View view) {
-            super(view);
-            notificationTitle = view.findViewById(R.id.notificationTitle);
-            notificationBody = view.findViewById(R.id.notificationBody);
+        public ViewHolder(View itemView) {
+            super(itemView);
+            titleTextView = itemView.findViewById(R.id.notificationTitle);
+            messageTextView = itemView.findViewById(R.id.notificationMessage);
         }
     }
 }
+

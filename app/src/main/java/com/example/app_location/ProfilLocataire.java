@@ -116,6 +116,14 @@ public class ProfilLocataire extends AppCompatActivity {
             return false;
         });
 
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilLocataire.this, PayementActivity.class);
+                startActivity(intent);
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

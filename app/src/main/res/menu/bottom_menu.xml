@@ -14,7 +14,6 @@
         tools:ignore="MenuTitle"
         android:title="Recherche" />
 
-
     <item android:id="@+id/profilmenu"
         android:icon="@drawable/baseline_account_circle_24"
         tools:ignore="MenuTitle"
