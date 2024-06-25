@@ -28,8 +28,7 @@ import java.util.Map;
 
 public class PayementActivity extends AppCompatActivity {
 
-    private EditText contactEditText;
-    private EditText cardNumberEditText;
+    private EditText cardNumberEditText, edittext_amount, edittext_date, edittext_crypto, contactEditText;
     private Button payButton;
     private FirebaseFirestore db;
     private ImageButton backButton;
@@ -45,6 +44,9 @@ public class PayementActivity extends AppCompatActivity {
         cardNumberEditText = findViewById(R.id.edittext_card_number);
         payButton = findViewById(R.id.button_pay);
         backButton = findViewById(R.id.backButton);
+        edittext_crypto = findViewById(R.id.edittext_crypto);
+        edittext_date = findViewById(R.id.edittext_date);
+
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,10 @@ public class PayementActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("propertyId")) {
             propertyId = extras.getString("propertyId");
+            String montant = extras.getString("montant");
+            montant = montant.replaceAll(" DH / mois", "");
+            edittext_amount.setText(montant);
+            edittext_amount.setEnabled(true);
         }
 
         db = FirebaseFirestore.getInstance();
@@ -78,6 +84,8 @@ public class PayementActivity extends AppCompatActivity {
 
                             String contact = contactEditText.getText().toString();
                             String cardNumber = cardNumberEditText.getText().toString();
+                            String dateEx = edittext_date.getText().toString();
+                            String crypto = edittext_crypto.getText().toString();
 
                             if (contact.isEmpty() || cardNumber.isEmpty()) {
                                 Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
@@ -105,6 +113,8 @@ public class PayementActivity extends AppCompatActivity {
                             payment.put("amount", amount[0]);
                             payment.put("card_number", cardNumber);
                             payment.put("proId", pid);
+                            payment.put("crypto", crypto);
+                            payment.put("dateExpi", dateEx);
 
 
                             // Ajouter les données à la collection "payments" dans Firestore
@@ -116,7 +126,7 @@ public class PayementActivity extends AppCompatActivity {
                                             // Enregistrement réussi
                                             Toast.makeText(getApplicationContext(), "Paiement enregistré avec succès", Toast.LENGTH_SHORT).show();
                                             updatePropertyAsPaid(pid); // Mettre à jour la propriété comme payée
-                                            Intent intent = new Intent(PayementActivity.this, tableau_bord.class);
+                                            Intent intent = new Intent(PayementActivity.this, liste_propriete.class);
                                             startActivity(intent);
                                         }
                                     })

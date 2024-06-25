@@ -1,12 +1,19 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +31,15 @@ import java.util.List;
 
 public class liste_propriete extends AppCompatActivity {
 
+    Context context;
+
     private RecyclerView recyclerView;
     private proprieteAdapter propertyAdapter;
     private List<Property> propertyList;
     private FirebaseFirestore db;
     private ArrayList<Uri> mArrayUri;
     private int position = 0;
+    CheckBox checkbox;
     private static final int PICK_IMAGE_REQUEST = 1;
     List<String> favoris;
 
@@ -55,7 +65,6 @@ public class liste_propriete extends AppCompatActivity {
         recyclerView.setAdapter(propertyAdapter);
 
         getPropertyListFromFirestore();
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -105,4 +114,4 @@ public class liste_propriete extends AppCompatActivity {
                     }
                 });
     }
-}
+    }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,7 +60,12 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         holder.tarif.setText(property.getTarif() + " DH");
         holder.ville.setText(property.getVille());
         holder.quartier.setText(property.getQuartier());
-        holder.disponibilite.setText(property.isPaid() ? "Non disponible" : "Disponible");
+        // Mettre à jour l'UI en fonction de la valeur de ispaid
+        if (property.isPaid()) {
+            holder.disponibilite.setText("Non Disponible");
+        } else {
+            holder.disponibilite.setText("Disponible");
+        }
 
         if (property.getPhoto() != null && !property.getPhoto().isEmpty()) {
             String firstImageUrl = property.getPhoto().get(0);
@@ -80,7 +86,6 @@ public class proprieteAdapter extends RecyclerView.Adapter<proprieteAdapter.Prop
         } else {
             holder.imageHeart.setImageResource(R.drawable.baseline_favorite_24); // Utiliser une icône de favori non remplie
         }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

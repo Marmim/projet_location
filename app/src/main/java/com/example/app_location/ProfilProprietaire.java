@@ -33,15 +33,10 @@ public class ProfilProprietaire extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
         backButton = findViewById(R.id.backButton);
-
         info = findViewById(R.id.editTextText5);
         pay = findViewById(R.id.editTextText6);
-        notifs = findViewById(R.id.editTextText7);
-        fav = findViewById(R.id.editTextText8);
         pub = findViewById(R.id.editTextText9);
-        dash = findViewById(R.id.editTextText10);
         logout = findViewById(R.id.editTextText12);
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +69,6 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
         });
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         TextView listeProprieteTextView = findViewById(R.id.listePropText1);
         listeProprieteTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,16 +115,6 @@ public class ProfilProprietaire extends AppCompatActivity {
             } else if (itemId == R.id.search) {
                 Intent hometIntent = new Intent(getApplicationContext(),liste_propriete.class);
                 startActivity(hometIntent);
-                return true;
-            } else  if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            }
-            else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
             }
             else if (itemId == R.id.profilmenu) {
                 Intent hometIntent = new Intent(getApplicationContext(), ProfilProprietaire.class);
@@ -139,29 +123,7 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
             return false;
         });
-        notifs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, notification.class);
-                startActivity(intent);
-            }
-        });
 
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, fav.class);
-                startActivity(intent);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         pub.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,13 +133,6 @@ public class ProfilProprietaire extends AppCompatActivity {
             }
         });
 
-        dash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilProprietaire.this, tableau_bord.class);
-                startActivity(intent);
-            }
-        });
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

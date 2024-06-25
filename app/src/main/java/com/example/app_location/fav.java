@@ -79,7 +79,7 @@ public class fav extends AppCompatActivity {
         propertyAdapter = new proprieteAdapter(favoriteProperties, this);
         recyclerView.setAdapter(propertyAdapter);
 
-        loadFavoritePropertiesFromFirestore();
+
 
 
         bottomNavigationView = findViewById(R.id.bot_nav);
@@ -94,14 +94,6 @@ public class fav extends AppCompatActivity {
                 Intent searchIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(searchIntent);
                 return true;
-            } else if (itemId == R.id.favoris) {
-                Intent favIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(favIntent);
-                return true;
-            } else if (itemId == R.id.notif) {
-                Intent notifIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(notifIntent);
-                return true;
             } else if (itemId == R.id.profilmenu) {
                 Intent profilIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
                 startActivity(profilIntent);
@@ -109,31 +101,6 @@ public class fav extends AppCompatActivity {
             }
             return false;
         });
-    }
-
-    private void loadFavoritePropertiesFromFirestore() {
-        db.collection("Property")
-                .whereEqualTo("favorite", true)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            favoriteProperties.clear();
-                            for (DocumentSnapshot document : task.getResult()) {
-                                Property property = document.toObject(Property.class);
-                                if (property != null) {
-                                    property.setId(document.getId());
-                                    favoriteProperties.add(property);
-                                }
-                            }
-                            propertyAdapter.notifyDataSetChanged();
-                            Log.d("Firestore", "Nombre de propriétés favorites: " + favoriteProperties.size());
-                        } else {
-                            Log.w("Firestore", "Erreur lors de la récupération des favoris.", task.getException());
-                        }
-                    }
-                });
     }
 
 }

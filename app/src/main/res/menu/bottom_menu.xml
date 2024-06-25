@@ -14,15 +14,6 @@
         tools:ignore="MenuTitle"
         android:title="Recherche" />
 
-    <item android:id="@+id/favoris"
-        android:icon="@drawable/baseline_favorite_24"
-        tools:ignore="MenuTitle"
-        android:title="Favoris" />
-
-    <item android:id="@+id/notif"
-        android:icon="@drawable/baseline_notifications_24"
-        tools:ignore="MenuTitle"
-        android:title="Notifications"/>
 
     <item android:id="@+id/profilmenu"
         android:icon="@drawable/baseline_account_circle_24"

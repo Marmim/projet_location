@@ -1,10 +1,12 @@
 package com.example.app_location;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +48,7 @@ public class MyproprieteAdpter extends RecyclerView.Adapter<MyproprieteAdpter.Pr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Property property = filteredPropertyList.get(position);
 
         holder.type.setText(property.getType());
@@ -61,8 +63,17 @@ public class MyproprieteAdpter extends RecyclerView.Adapter<MyproprieteAdpter.Pr
             }
         });
 
-        Glide.with(context).load(property.getPhoto()).into(holder.photo);
 
+        if (property.getPhoto() != null && !property.getPhoto().isEmpty()) {
+            String firstImageUrl = property.getPhoto().get(0);
+            // Utilisez une bibliothèque d'image comme Glide ou Picasso pour charger l'image
+            Glide.with(context).load(firstImageUrl).into(holder.photo);
+            String imageUrl = property.getPhoto().get(0); // Première URL de la liste
+            Log.d("PropertyAdapter", "Loading image URL: " + imageUrl); // Ajout de log pour vérifier l'URL
+            Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.photo);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,4 +157,15 @@ public class MyproprieteAdpter extends RecyclerView.Adapter<MyproprieteAdpter.Pr
                     // Par exemple, afficher un message à l'utilisateur
                 });
     }
+
+    public void updatePropertyStatus(String propertyId, boolean isPaid) {
+        for (Property property : propertyList) {
+            if (property.getId().equals(propertyId)) {
+                property.setPaid(isPaid);
+                notifyDataSetChanged();
+                break;
+            }
+        }
+    }
+
 }

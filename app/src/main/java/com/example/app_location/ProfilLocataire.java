@@ -20,7 +20,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 public class ProfilLocataire extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ImageButton backButton;
-    private EditText info , pay , notifs , fav , logout ;
+    private TextView info , pay , notifs , fav , logout ;
 
 
     @SuppressLint("WrongViewCast")
@@ -33,12 +33,9 @@ public class ProfilLocataire extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bot_nav);
         bottomNavigationView.setSelectedItemId(R.id.profilmenu);
-        pay = findViewById(R.id.editTextText6);
-        notifs = findViewById(R.id.editTextText7);
-        fav = findViewById(R.id.editTextText8);
+        pay=findViewById(R.id.editTextText6);
         logout = findViewById(R.id.editTextText9);
         info = findViewById(R.id.editTextText5);
-
         backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
 
@@ -111,14 +108,6 @@ public class ProfilLocataire extends AppCompatActivity {
                 Intent hometIntent = new Intent(getApplicationContext(), liste_propriete.class);
                 startActivity(hometIntent);
                 return true;
-            } else if (itemId == R.id.favoris) {
-                Intent hometIntent = new Intent(getApplicationContext(), fav.class);
-                startActivity(hometIntent);
-                return true;
-            } else if (itemId == R.id.notif) {
-                Intent hometIntent = new Intent(getApplicationContext(), notification.class);
-                startActivity(hometIntent);
-                return true;
             } else if (itemId == R.id.profilmenu) {
                 Intent hometIntent = new Intent(getApplicationContext(), ProfilLocataire.class);
                 startActivity(hometIntent);
@@ -127,20 +116,6 @@ public class ProfilLocataire extends AppCompatActivity {
             return false;
         });
 
-        notifs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilLocataire.this, notification.class);
-                startActivity(intent);
-            }
-        });
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfilLocataire.this, fav.class);
-                startActivity(intent);
-            }
-        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
